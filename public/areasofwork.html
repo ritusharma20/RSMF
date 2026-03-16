@@ -1,0 +1,927 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <!-- required meta -->
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- #favicon -->
+   <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+   <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+   <!-- #title -->
+   <title>Official Website | Rita Shiva Memorial Foundation</title>
+   <!-- #keywords -->
+   <meta name="keywords" content="charity, nonprofit, fundraising, donation">
+   <!-- #description -->
+   <!-- Open Graph / WhatsApp Preview -->
+<meta property="og:title" content="Official Website | Rita Shiva Memorial Foundation" />
+<meta property="og:description" content="The Rita Shiva Memorial Foundation is dedicated to uplifting under proviledge communities through educational, health and social initiatives. Established in loving memory of Rita Shiva, Our Mission is to empower lives and faster sustainable development." />
+<meta property="og:image" content="https://misspl.co.in/rsmf/assets/images/logo.png" />
+<meta property="og:url" content="https://www.misspl.co.in/rsmf/" />
+<meta property="og:type" content="website" />
+
+<!-- Optional but recommended -->
+<meta property="og:site_name" content="Rita Shiva Memorial Foundation" />
+
+<!-- Twitter (WhatsApp also reads these sometimes) -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Official Website | Rita Shiva Memorial Foundation" />
+<meta name="twitter:description" content="The Rita Shiva Memorial Foundation is dedicated to uplifting under proviledge communities through educational, health and social initiatives." />
+<meta name="twitter:image" content="https://misspl.co.in/rsmf/assets/images/logo.png" />
+
+   <!-- google fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;family=Nunito:ital,wght@0,200..1000;1,200..1000&amp;family=Outfit:wght@100..900&amp;display=swap"
+      rel="stylesheet"> <!-- main css -->
+   <link rel="stylesheet" href="assets/css/main.css">
+   <!-- responsive css -->
+   <link rel="stylesheet" href="assets/css/responsive.css">
+   <!-- color themes -->
+   <link rel="stylesheet" href="assets/css/default-theme.css" id="switch-color">
+   <!-- want sticky header -->
+   <link rel="stylesheet" href="assets/css/sticky-header.css">
+   <!-- box layout css -->
+   <link rel="stylesheet" href="assets/css/box-layout.css">
+   <!-- dark mode css -->
+   <link rel="stylesheet" href="assets/css/dark-mode.css">
+   <!-- rtl css -->
+   <link rel="stylesheet" href="assets/css/rtl.css">
+	
+	<style>
+  /* Logo as background */
+  .navbar-brand.logo-center {
+    width: 140px;
+    height: 140px;
+    background-size: contain;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 6px 20px rgba(0,0,0,.2);
+  }
+
+  .navbar {
+    background: linear-gradient(to right, #b58016, #fff2a7, #b58016);
+    padding: 20px 0;
+	border-radius: 60px;
+	padding-inline-start: 35px;  
+  }
+
+  .nav-link {
+    font-weight: 700 !important;
+    color: #2b2b2b !important;
+    font-weight: 700;
+	font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+    padding: 18px 18px !important;
+    width: 100%;
+    line-height: 1;
+    color: #16171a;  
+  }
+
+  .donate-btn {
+    background: #e1a63b;
+    color: #fff !important;
+    border-radius: 25px;
+    padding: 6px 18px;
+    font-weight: 600;
+  }
+
+  /* Desktop center logo */
+  @media (min-width: 992px) {
+    .logo-wrapper {
+      position: absolute;
+      left: 45%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+  }
+	.map-section {
+        /*padding: 40px 15px;*/
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    .map-title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .map-title h2 {
+        margin: 0;
+        font-size: 28px;
+        color: #222;
+    }
+
+    .map-title p {
+        color: #666;
+        margin-top: 5px;
+    }
+
+    .map-card {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        background: #fff;
+    }
+
+    /* Responsive iframe container */
+    .map-responsive {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 ratio */
+        height: 250px; 
+        overflow: hidden;
+    }
+
+    .map-responsive iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .map-info {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(255,255,255,0.95);
+        padding: 15px 20px;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .map-info h4 {
+        margin: 0;
+        font-size: 16px;
+        color: #111;
+    }
+
+    .map-info p {
+        margin: 4px 0 0;
+        font-size: 14px;
+        color: #555;
+    }
+    /* ===== REPORT INTRO SECTION ===== */
+.report-intro-section{
+    padding:100px 20px;
+    background:#ffffff;
+}
+
+.main-heading{
+    font-size:42px;
+    font-weight:900;
+    color:#b58016;
+}
+
+/* CARD STYLE */
+.info-card{
+    background:#fff;
+    padding:25px;
+    border-radius:18px;
+    margin-bottom:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.08);
+    transition:.4s ease;
+    border-left:5px solid #e1a63b;
+}
+
+.info-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 25px 60px rgba(0,0,0,0.12);
+}
+
+.info-card .icon{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.info-card h5{
+    font-weight:700;
+    color:#b58016;
+    margin-bottom:10px;
+}
+
+.info-card p{
+    color:#555;
+    font-size:15px;
+    line-height:1.7;
+}
+
+/* IMAGE STYLE */
+.image-wrapper{
+    position:relative;
+}
+
+.image-wrapper img{
+    border-radius:20px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.15);
+    transition:.5s;
+}
+
+.image-wrapper img:hover{
+    transform:scale(1.05);
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .main-heading{
+        font-size:28px;
+    }
+}
+/* ===== REPORT HEADING ===== */
+.report-heading-section{
+    padding:80px 20px 40px;
+    background:#ffffff;
+}
+
+.report-main-heading{
+    font-size:44px;
+    font-weight:900;
+    color:#b58016;
+    position:relative;
+    display:inline-block;
+    letter-spacing:1px;
+    animation: fadeSlideDown 1s ease;
+}
+
+.report-main-heading::after{
+    content:"";
+    width:90px;
+    height:4px;
+    background:#e1a63b;
+    display:block;
+    margin:15px auto 0;
+    border-radius:5px;
+    animation: lineGrow 1.2s ease;
+}
+
+.report-subheading{
+    margin-top:20px;
+    font-size:18px;
+    color:#555;
+}
+
+/* Animations */
+@keyframes fadeSlideDown{
+    from{
+        opacity:0;
+        transform:translateY(-40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes lineGrow{
+    from{
+        width:0;
+    }
+    to{
+        width:90px;
+    }
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .report-main-heading{
+        font-size:28px;
+    }
+}
+
+    /* ===== TABLE SECTION ===== */
+/* Card Container */
+.report-card{
+    background:#ffffff;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.08);
+}
+
+/* Table Styling */
+/* Table Full Border */
+.custom-report-table{
+    width:100%;
+    border-collapse:collapse;
+    border:1px solid #ddd;
+}
+
+/* Header */
+.custom-report-table thead{
+    background:linear-gradient(45deg,#b58016,#e1a63b);
+    color:#fff;
+}
+
+.custom-report-table th{
+    padding:18px;
+    font-weight:600;
+    text-align:center;
+    font-size:16px;
+    border:1px solid rgba(255,255,255,0.3);
+    color:Black;
+}
+
+/* Body Cells */
+.custom-report-table td{
+    padding:18px;
+    text-align:center;
+    border:1px solid #e5e5e5;
+    font-size:15px;
+    color:#444;
+}
+
+/* Alternate Row */
+.custom-report-table tbody tr:nth-child(even){
+    background:#faf7f2;
+}
+
+/* Hover Effect */
+.custom-report-table tbody tr{
+    transition:0.3s ease;
+}
+
+.custom-report-table tbody tr:hover{
+    background:#fff3e0;
+    transform:scale(1.01);
+}
+
+/* Card Container */
+.report-card{
+    background:#ffffff;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.08);
+}
+
+/* PDF Button */
+.pdf-btn{
+    display:inline-block;
+    padding:8px 20px;
+    background:#b58016;
+    color:#fff;
+    text-decoration:none;
+    border-radius:25px;
+    font-size:14px;
+    font-weight:600;
+    transition:0.3s ease;
+}
+
+.pdf-btn:hover{
+    background:#e1a63b;
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .report-card{
+        padding:20px;
+    }
+    .custom-report-table th,
+    .custom-report-table td{
+        font-size:13px;
+        padding:12px;
+    }
+}
+     @media (max-width: 600px) {
+        .map-info {
+            position: static;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .sticky-header {
+  /*position: fixed !important;*/
+  position: static !important; }
+			
+	.header-secondary {
+
+    position: static; margin-top: 120px !important; 
+} }	 
+     @media (max-width: 600px) {
+        .map-info {
+            position: static;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .sticky-header {
+  /*position: fixed !important;*/
+  position: static !important; }
+			
+	.header-secondary {
+
+    position: static; margin-top: 120px !important; 
+} }	 
+		
+</style>
+	
+</head>
+<body>
+    <form method="post" action="./Areas.aspx" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE4MzUyOTYxNzdkZG1RBKJk63B1RRYQor1P/l2Dw5DShbmj0ct8Tyg8mTkr" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="FEE13A2E" />
+</div>
+    <!--[if lt IE 9]>
+      <p class="browserupgrade">
+         You are using an <strong>outdated</strong> browser. Please
+         <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+         your experience and security.
+      </p>
+      <![endif]-->
+   <div class="page-wrapper">
+   <!-- ==== header start ==== -->
+      
+<!-- ==== preloader start ==== -->
+      <div class="preloader">
+       
+      <img class="icon-donation" src="assets/images/logo.png" style="height:300px;" alt=""/> </div>
+      <!-- ==== / preloader end ==== -->
+      <!-- ==== topbar start ==== -->
+      <div class="topbar topbar--secondary d-lg-block">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <div class="topbar__inner">
+                     <div class="row align-items-center">
+                        <div class="col-12 col-lg-6 col-xxl-4">
+                           <div class="topbar__list-wrapper">
+                              <ul class="topbar__list">
+                                 <li><a href="mailto:contact@rsmfoundation.org.in"><i
+                                          class="fa-regular fa-envelope"></i>contact@rsmfoundation.org.in</a>
+                                 </li>
+                                 <li><a href="tel:+919029902930"><i class="fa-solid fa-phone"></i>+91 7544008866</a>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="col-12 col-xxl-4 d-none d-xxl-block">
+                           <div class="topbar__extra text-center">
+                              <p><i class="icon-heart-hand"></i> Are you ready to help them? Let's become a
+                                 volunteer!
+                              </p>
+                           </div>
+                        </div>
+                        <div class="col-12 col-lg-6 col-xxl-4">
+                           <div class="topbar__items justify-content-end">
+                              
+                              
+                              <div class="social">
+                                 <a href="#" target="_blank" aria-label="share us on facebook"
+                                    title="facebook">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                 </a>
+
+                                 <a href="#" target="_blank" aria-label="share us on twitter"
+                                    title="twitter">
+                                    <i class="fa-brands fa-twitter"></i>
+                                 </a>
+                                 <a href="#" target="_blank" aria-label="share us on linkedin"
+                                    title="linkedin">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- ==== / topbar end ==== -->
+      <!-- ==== header start ==== -->
+      <header class="header header-secondary bg-mobile">
+         <div class="container">
+            <div class="row">
+               <div class="col-12">
+                  <div class="main-header__menu-box">
+					  
+					  <nav class="navbar navbar-expand-lg">
+  <div class="container position-relative">
+
+    <!-- Mobile Toggle -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Center Logo -->
+    <div class="logo-wrapper">
+      <a class="navbar-brand logo-center mx-auto" href="Home.aspx"><img src="assets/images/logo.png" style="height: 140px;" alt="Rita Shiva Memorial Foundation"/></a>
+    </div>
+
+    <!-- Navigation -->
+    <div class="collapse navbar-collapse justify-content-between" id="mainNav">
+
+      <!-- Left Menu -->
+      <ul class="navbar-nav">
+                                 <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+                                       data-bs-toggle="dropdown">About Us</a>
+                                    <ul class="dropdown-menu">
+                                       <li><a class="dropdown-item" href="mision.html">Overview</a></li>
+                                       <li><a class="dropdown-item" href="legalhistory.html">Our Team</a></li>
+                                       <li><a class="dropdown-item" href="reports&disclosure.html">Reports & Disclosures</a></li>
+                                       <!-- <li><a class="dropdown-item" href="management.html">Management & Team</a></li> -->
+                                    </ul>
+                                 </li>
+                                 <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Our Work</a>
+                                    <ul class="dropdown-menu">
+                                       
+                                       <li><a class="dropdown-item" href="areasofwork.html">Areas of Work</a></li>
+                                       <li><a class="dropdown-item" href="programsinitiatives.html">Programs & Initiatives</a></li>
+                                       <!-- <li><a class="dropdown-item" href="completeproject.html">Completed Projects</a></li> -->
+
+                                    </ul>
+                                 </li>
+                                 <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Impact</a>
+                                    <ul class="dropdown-menu">
+                                       <li><a class="dropdown-item" href="storiesofchanges.html">Stories of Change</a></li>
+                                       <!-- <li><a class="dropdown-item" href="voicefromfield.html">Voices from the Field</a></li> -->
+                                       <li><a class="dropdown-item" href="mediagallery.html">Media Gallery</a></li>
+                                       <!-- <li><a class="dropdown-item" href="reports&disclosure.html">Video</a></li> -->
+                                    </ul>
+                                 </li>
+
+                              </ul>
+
+                              <!-- Right Menu -->
+                              <ul class="navbar-nav align-items-lg-center">
+                                 <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Get
+                                       Involved</a>
+                                    <ul class="dropdown-menu">
+                                       <li><a class="dropdown-item" href="volunteer.html">Join as a Volunteer</a></li>
+                                       
+                                       <li><a class="dropdown-item" href="donate-us.html">Become a Donor</a></li>
+                                    </ul>
+                                 </li>
+                                 <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Updates</a>
+                                    <ul class="dropdown-menu">
+                                       <li><a class="dropdown-item" href="blog&articles.html">Blog & Articles</a></li>
+                                       <li><a class="dropdown-item" href="news&announcements.html">News & Announcements</a></li>
+                                       <li><a class="dropdown-item" href="events&activities.html">Events & Activities</a></li>
+
+                                    </ul>
+                                 </li>
+                                 <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+                                 <li class="nav-item ms-lg-3">
+                                    <a href="donate-us.html" class="btn--primary d-none d-md-flex">Donate Now <i
+                                          class="fa-solid fa-arrow-right"></i></a>
+                                 </li>
+                              </ul>
+
+                           </div>
+
+                        </div>
+                     </nav>
+
+                  </div>
+               </div>
+            </div>
+         </div>
+      </header>
+      <!-- ==== / header end ==== -->
+
+      <!-- ==== mobile menu start ==== -->
+      <div class="mobile-menu mobile-menu--primary d-block d-xxl-none">
+         <nav class="mobile-menu__wrapper">
+            <div class="mobile-menu__header nav-fade">
+               <div class="logo">
+                  <a href="index.html" aria-label="home page" title="logo">
+                     <img src="assets/images/logo.png" alt="Image">
+                  </a>
+               </div>
+               <button aria-label="close mobile menu" class="close-mobile-menu">
+                  <i class="fa-solid fa-xmark"></i>
+               </button>
+            </div>
+            <div class="mobile-menu__list"></div>
+            <div class="mobile-menu__cta nav-fade d-block d-md-none">
+               <a href="#" class="btn--primary ">Donate Now <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="mobile-menu__social social nav-fade">
+               <a href="#" target="_blank" aria-label="share us on facebook" title="facebook">
+                  <i class="fa-brands fa-facebook-f"></i>
+               </a>
+               <a href="#" target="_blank" aria-label="share us on vimeo" title="vimeo">
+                  <i class="fa-brands fa-vimeo-v"></i>
+               </a>
+               <a href="#" target="_blank" aria-label="share us on twitter" title="twitter">
+                  <i class="fa-brands fa-twitter"></i>
+               </a>
+               <a href="#" target="_blank" aria-label="share us on linkedin" title="linkedin">
+                  <i class="fa-brands fa-linkedin-in"></i>
+               </a>
+            </div>
+         </nav>
+      </div>
+      <div class="mobile-menu__backdrop"></div>
+      <!-- ==== / mobile menu end ==== -->
+     
+
+      <!-- ==== header end ==== -->
+      <!-- ==== banner section start ==== -->
+      <section class="common-banner">
+         <div class="container">
+            <div class="row">
+               <div class="common-banner__content text-center">
+                  <span class="sub-title"><i class="icon-donation"></i>Helping Make a Diffrence in Lives !</span>
+                  <h2 class="title-animation">Areas Of Work</h2>
+               </div>
+            </div>
+         </div>
+         <div class="banner-bg">
+            <img src="assets/images/banner/banner-bg.png" alt="Image">
+         </div>
+         <div class="sprade" data-aos="zoom-in" data-aos-duration="1000">
+            <img src="assets/images/sprade-base.png" alt="Image" class="base-img">
+         </div>
+      </section>
+      <!-- ==== / banner section end ==== -->
+      <!-- ===== Report Section Start ===== -->
+         <section class="report-intro-section">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="main-heading" data-aos="fade-down">
+                Transforming Lives Through Meaningful Action
+            </h2>
+            <h5>We are actively engaged in the following areas to create sustainable improvements in people’s lives.</h5>
+        </div>
+
+        <div class="row align-items-center g-5">
+
+            <!-- LEFT SIDE CARDS -->
+            <div class="col-lg-6">
+
+                <div class="info-card" data-aos="fade-right">
+                    <div class="icon">📚</div>
+                    <h5>Education</h5>
+                    <p>
+                        Establish and support schools, colleges, coaching centres, libraries, hostels, and research institutions to promote education at all levels including technical and professional education.
+                    </p>
+                </div>
+
+                
+                <div class="info-card" data-aos="fade-right" data-aos-delay="400">
+                    <div class="icon">📢</div>
+                    <h5>Awareness Programs</h5>
+                    <p>
+                        Conduct workshops, seminars, awareness camps, and training programs for social and educational development.
+                    </p>
+                </div>
+                <div class="info-card" data-aos="fade-right" data-aos-delay="400">
+                    <div class="icon">🌍</div>
+                    <h5>Community Development</h5>
+                    <p>
+                        Promote social welfare programs for holistic development of society.
+                    </p>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE IMAGE -->
+            <div class="col-lg-6" data-aos="fade-left">
+            <div class="info-card" data-aos="fade-right" data-aos-delay="200">
+                    <div class="icon">🛠</div>
+                    <h5>Skill Development</h5>
+                    <p>
+                        Promote vocational education, entrepreneurship development, skill enhancement, and employment generation programs for youth and women.
+                    </p>
+                </div>
+
+                <div class="info-card" data-aos="fade-right" data-aos-delay="400">
+                    <div class="icon">🏥</div>
+                    <h5>Healthcare</h5>
+                    <p>
+                        Organise medical camps, promote preventive healthcare, establish clinics, and support healthcare initiatives.
+                    </p>
+                </div>
+                <div class="info-card" data-aos="fade-right" data-aos-delay="400">
+                    <div class="icon">🤝</div>
+                    <h5>Social Welfare</h5>
+                    <p>
+                        Support the upliftment of economically weaker sections, women, children, senior citizens, and persons with disabilities.
+                    </p>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+</section>
+
+      
+      <!-- ==== footer start ==== -->
+     
+<!-- ==== footer start ==== -->
+      <footer class="footer-two mt-5">
+         <div class="container">
+            
+            <div class="row gutter-60">
+               <div class="col-12 col-md-6 col-xl-3">
+                  <div class="footer-two__widget" data-aos="fade-up" data-aos-duration="1000">
+                     <div class="footer-two__widget-logo">
+                        <a href="Home.aspx">
+						   <img src="assets/images/logo.png" style="height: 120px;" alt="Rita Shiva Memorial Foundation"/> 
+                        </a>
+                     </div>
+                     <div class="footer-two__widget-content">
+                        <p>The Rita Shiva Memorial Foundation is dedicated to uplifting under proviledge communities through educational, health and social initiatives.
+                        </p>
+                        <div class="social">
+                           <a href="#" target="_blank" aria-label="share us on facebook"
+                              title="facebook">
+                              <i class="fa-brands fa-facebook-f"></i>
+                           </a>
+                           <a href="#" target="_blank" aria-label="share us on twitter" title="twitter">
+                              <i class="fa-brands fa-twitter"></i>
+                           </a>
+                           <a href="#" target="_blank" aria-label="share us on linkedin"
+                              title="linkedin">
+                              <i class="fa-brands fa-linkedin-in"></i>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-12 col-md-6 col-xl-2 offset-xl-1">
+                  <div class="footer-two__widget" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                     <div class="footer-two__widget-intro">
+                        <h5>Quick Links</h5>
+                        <div class="line">
+                           <span class="large-line"></span>
+                           <span class="small-line"></span>
+                           <span class="small-line"></span>
+                        </div>
+                     </div>
+                     <div class="footer-two__widget-content">
+                        <ul>
+                           <li><a href="Home.aspx"><i class="fa-solid fa-arrow-right"></i>Home</a>
+                           </li>
+                           <li><a href="About.aspx"><i class="fa-solid fa-arrow-right"></i>About Us</a>
+                           </li>
+                           <li><a href="Initiatives.aspx"><i class="fa-solid fa-arrow-right"></i>Our
+                                 Work</a>
+                           </li>
+                           <li><a href="Stories.aspx"><i class="fa-solid fa-arrow-right"></i>Impact</a></li>
+                           <li><a href="Donation.aspx"><i class="fa-solid fa-arrow-right"></i>Get Involved</a>
+                           </li>
+                           <li><a href="Blogs.aspx"><i class="fa-solid fa-arrow-right"></i>Updates</a>
+                                                      </li>
+                                                      <li><a href="Contact.aspx"><i class="fa-solid fa-arrow-right"></i>Contact Us</a>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               
+               <div class="col-12 col-md-6 col-xl-3">
+                  <div class="footer-two__widget footer-two__widget--alternate" data-aos="fade-up"
+                     data-aos-duration="1000" data-aos-delay="600">
+                     <div class="footer-two__widget-intro">
+                        <h5>Get In Touch</h5>
+                        <div class="line">
+                           <span class="large-line"></span>
+                           <span class="small-line"></span>
+                           <span class="small-line"></span>
+                        </div>
+                     </div>
+                     <div class="footer-two__widget-content footer-two__widget-content--contact">
+                        <ul>
+                           <li><a href="#"><i
+                                    class="fa-solid fa-location-dot"></i>Plot No-2754, Vill- Koili, Sitamarhi, Nanpur, Bihar - 843333, India.</a>
+                           </li>
+                           <li><a href="tel:+919029902930"><i class="fa-solid fa-phone"></i>+91 7544008866</a>
+                           </li>
+                           <li><a href="mailto:contact@rsmfoundation.org.in"><i
+                                    class="fa-regular fa-envelope"></i>contact@rsmfoundation.org.in</a></li>
+                                     <li><a href="https://www.rsmfoundation.org.in"><i
+                                    class="fa-regular fa-laptop"></i>www.rsmfoundation.org.in</a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-12 col-md-6 col-xl-3">
+                  <div class="footer-two__widget footer-two__widget--alternate" data-aos="fade-up"
+                     data-aos-duration="1000" data-aos-delay="400">
+                     <div class="footer-two__widget-intro">
+                        <h5>Our Location</h5>
+                        <div class="line">
+                           <span class="large-line"></span>
+                           <span class="small-line"></span>
+                           <span class="small-line"></span>
+                        </div>
+                     </div>
+                     <section class="map-section">
+    
+    <div class="map-card">
+        <div class="map-responsive">
+            <!-- Replace location URL if needed -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5126.124481274325!2d85.66464685!3d26.44052625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ec54189af1a14b%3A0xea44d5a7fc500369!2sNanpur%2C%20Bihar%20843333!5e1!3m2!1sen!2sin!4v1770439189353!5m2!1sen!2sin"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+    </div>
+</section>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="footer-two__copyright">
+            <div class="container">
+               <div class="row align-items-center gutter-12">
+                  <div class="col-12 col-lg-6">
+                     <div class="footer-two__copyright-inner text-center text-lg-start">
+                        <p>Copyright &copy; <span id="copyrightYear"></span> <a href="Home.aspx">Rita Shiva Memorial Foundation</a>.
+                           All rights
+                           reserved.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg-6">
+                     <div class="footer__bottom-left">
+                        <ul class="footer__bottom-list justify-content-center justify-content-lg-end">
+                           <li><a href="tc.html">Terms & Conditions</a></li>
+                           <li><a href="privacy.html">Privacy Policy</a></li>
+                        </ul>
+                     </div>
+                  </div>
+                   <div class="col-12" style="text-align: center !important;"><b>Total Visitors:</b>&nbsp;
+                   <a href="https://www.freecounterstat.com" title="website view counter"><img src="https://counter1.optistats.ovh/private/freecounterstat.php?c=fklaamkee3542pfqncejj7ht894k7crx" border="0" title="website view counter" alt="website view counter"></a>
+                   </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- ==== / footer end ==== -->
+      <!-- ==== custom cursor start ==== -->
+      <!--<div class="mouseCursor cursor-outer"></div>
+      <div class="mouseCursor cursor-inner"></div>-->
+      <!-- ==== / custom cursor end ==== -->
+      <!-- ==== scroll to top start ==== -->
+      <button class="progress-wrap" aria-label="scroll indicator" title="back to top">
+         <span></span>
+         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+         </svg>
+      </button>
+      <!-- ==== / scroll to top end ==== -->
+
+     <!-- ==== footer end ==== -->
+
+     
+   </div>
+   
+    </form>
+    <!-- ==== js dependencies start ==== -->
+   <!-- jquery -->
+   <script src="assets/js/jquery-3.7.1.min.js"></script>
+   <!-- bootstrap five js -->
+   <script src="assets/js/bootstrap.bundle.min.js"></script>
+   <!-- nice select js -->
+   <script src="assets/js/jquery.nice-select.min.js"></script>
+   <!-- magnific popup js -->
+   <script src="assets/js/jquery.magnific-popup.min.js"></script>
+   <!-- swiper slider js -->
+   <script src="assets/js/swiper-bundle.min.js"></script>
+   <!-- viewport js -->
+   <script src="assets/js/viewport.jquery.js"></script>
+   <!-- odometer js -->
+   <script src="assets/js/odometer.min.js"></script>
+   <!-- vanilla tilt js -->
+   <script src="assets/js/vanilla-tilt.min.js"></script>
+   <!-- aos js -->
+   <script src="assets/js/aos.js"></script>
+
+   <!-- splittext js -->
+   <script src="assets/js/SplitText.min.js"></script>
+   <!-- scrollto js -->
+   <script src="assets/js/ScrollToPlugin.min.js"></script>
+   <!-- scrolltrigger js -->
+   <script src="assets/js/ScrollTrigger.min.js"></script>
+   <!-- gsap js -->
+   <script src="assets/js/gsap.min.js"></script>
+   <!-- ==== / js dependencies end ==== -->
+   <!-- template settings js -->
+   <script src="assets/js/template-settings.js"></script>
+   <!-- main js -->
+   <script src="assets/js/custom.js"></script>
+</body>
+</html>

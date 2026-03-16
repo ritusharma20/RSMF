@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Slider - Smart City Patna</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:#f1f4f7;
+}
+
+/* TOPBAR */
+
+.topbar{
+height:60px;
+background:white;
+display:flex;
+align-items:center;
+padding:0 20px;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo{
+height:45px;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:250px;
+height:100vh;
+background:#1e2b38;
+position:fixed;
+color:white;
+}
+
+.sidebar ul{
+list-style:none;
+padding:0;
+margin:0;
+}
+
+.sidebar li{
+padding:14px 20px;
+cursor:pointer;
+}
+
+.sidebar li:hover{
+background:#2d3a4a;
+}
+
+.sidebar a{
+color:white;
+text-decoration:none;
+display:block;
+}
+
+.submenu{
+display:none;
+background:#2c3947;
+}
+
+.submenu li{
+padding-left:40px;
+font-size:14px;
+}
+
+/* PAGE */
+
+.page-wrapper{
+margin-left:250px;
+padding:30px;
+}
+
+.card{
+border-radius:6px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.submit-btn{
+background:#1cc88a;
+border:none;
+padding:10px 30px;
+color:white;
+border-radius:4px;
+}
+
+.footer{
+text-align:center;
+margin-top:40px;
+font-size:13px;
+color:#777;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+<img src="https://smartpatna.co.in/images/logo.png" class="logo">
+</div>
+
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<ul>
+
+<li><a href="#">Home</a></li>
+
+<li onclick="toggleMenu()">➕ Add Administrator</li>
+
+<ul class="submenu" id="submenu">
+
+<li><a href="#">Add Administrator</a></li>
+<li><a href="#">Add Image to Gallery</a></li>
+<li><a href="#">Add Video to Gallery</a></li>
+<li><a href="#">Add Team Member Details</a></li>
+<li><a href="#"><b>Add Slider</b></a></li>
+
+</ul>
+
+<li>👁 View and Update</li>
+<li>📄 Tenders</li>
+<li>📊 View Tenders</li>
+<li>📁 Projects</li>
+<li>Board Directors</li>
+
+</ul>
+
+</div>
+
+
+<!-- PAGE CONTENT -->
+
+<div class="page-wrapper">
+
+<div class="card p-4">
+
+<h4 class="mb-4">Add Sliders</h4>
+
+<form>
+
+<div class="row">
+
+<!-- LEFT SIDE ENGLISH -->
+
+<div class="col-md-6">
+
+<label><b>First English (1349 X 633) pixels :</b></label>
+<input type="file" class="form-control mb-3">
+
+<label><b>Second English (1349 X 633) pixels :</b></label>
+<input type="file" class="form-control mb-3">
+
+<label><b>Third English (1349 X 633) pixels :</b></label>
+<input type="file" class="form-control mb-3">
+
+<label><b>Fourth English (1349 X 633) pixels :</b></label>
+<input type="file" class="form-control mb-3">
+
+<label><b>Fifth English (1349 X 633) pixels :</b></label>
+<input type="file" class="form-control mb-3">
+
+</div>
+
+
+<!-- RIGHT SIDE HINDI -->
+
+<div class="col-md-6">
+
+<label><b>First Hindi (1349 X 633) pixels :</b></label>
+<input type="file" class="form-control mb-3">
+
+<label><b>Second Hindi (1349 X 633) pixels :</b></label>
+<input type="file" class="form-control mb-3">
+
+<label><b>Third Hindi (1349 X 633) pixels :</b></label>
+<input type="file" class="form-control mb-3">
+
+<label><b>Fourth Hindi (1349 X 633) pixels :</b></label>
+<input type="file" class="form-control mb-3">
+
+<label><b>Fifth Hindi (1349 X 633) pixels :</b></label>
+<input type="file" class="form-control mb-3">
+
+</div>
+
+</div>
+
+<div class="text-center mt-4">
+
+<button class="submit-btn">
+Upload Sliders
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+<div class="footer">
+© 2017 Maas InfoSolutions Pvt Ltd.
+</div>
+
+</div>
+
+
+<script>
+
+function toggleMenu(){
+
+var menu=document.getElementById("submenu");
+
+if(menu.style.display==="block"){
+menu.style.display="none";
+}else{
+menu.style.display="block";
+}
+
+}
+
+</script>
+
+</body>
+</html>

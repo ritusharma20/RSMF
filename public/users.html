@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>User List</title>
+</head>
+
+<body>
+
+<h2>User Data</h2>
+
+<ul id="userList"></ul>
+
+<script>
+
+fetch("http://localhost:5000/api/users")
+.then(res => res.json())
+.then(data => {
+
+let list = document.getElementById("userList");
+
+data.forEach(user => {
+
+let li = document.createElement("li");
+
+li.innerHTML = user.name + " - " + user.email;
+
+list.appendChild(li);
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>
