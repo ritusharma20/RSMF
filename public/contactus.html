@@ -7,8 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- #favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
-    <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
     <!-- #title -->
     <title>Official Website | Rita Shiva Memorial Foundation</title>
     <!-- #keywords -->
@@ -38,19 +38,19 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;family=Nunito:ital,wght@0,200..1000;1,200..1000&amp;family=Outfit:wght@100..900&amp;display=swap"
         rel="stylesheet"> <!-- main css -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
     <!-- responsive css -->
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
     <!-- color themes -->
-    <link rel="stylesheet" href="assets/css/default-theme.css" id="switch-color">
+    <link rel="stylesheet" href="../assets/css/default-theme.css" id="switch-color">
     <!-- want sticky header -->
-    <link rel="stylesheet" href="assets/css/sticky-header.css">
+    <link rel="stylesheet" href="../assets/css/sticky-header.css">
     <!-- box layout css -->
-    <link rel="stylesheet" href="assets/css/box-layout.css">
+    <link rel="stylesheet" href="../assets/css/box-layout.css">
     <!-- dark mode css -->
-    <link rel="stylesheet" href="assets/css/dark-mode.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
     <!-- rtl css -->
-    <link rel="stylesheet" href="assets/css/rtl.css">
+    <link rel="stylesheet" href="../assets/css/rtl.css">
 
     <style>
         /* Logo as background */
@@ -452,7 +452,7 @@
                                     <!-- Center Logo -->
                                     <div class="logo-wrapper">
                                         <a class="navbar-brand logo-center mx-auto" href="index.html"><img
-                                                src="assets/images/logo.png" style="height: 140px;" alt="" /></a>
+                                                src="../assets/images/logo.png" style="height: 140px;" alt="" /></a>
                                     </div>
 
                                     <!-- Navigation -->
@@ -555,7 +555,7 @@
                 <div class="mobile-menu__header nav-fade">
                     <div class="logo">
                         <a href="index.html" aria-label="home page" title="logo">
-                            <img src="assets/images/logo.png" alt="Image">
+                            <img src="../assets/images/logo.png" alt="Image">
                         </a>
                     </div>
                     <button aria-label="close mobile menu" class="close-mobile-menu">
@@ -613,10 +613,10 @@
                 </div>
             </div>
             <div class="banner-bg">
-                <img src="assets/images/banner/banner-bg.png" alt="Image">
+                <img src="../assets/images/banner/banner-bg.png" alt="Image">
             </div>
             <div class="sprade" data-aos="zoom-in" data-aos-duration="1000">
-                <img src="assets/images/sprade-base.png" alt="Image" class="base-img">
+                <img src="../assets/images/sprade-base.png" alt="Image" class="base-img">
             </div>
         </section>
         <!-- ==== / banner section end ==== -->
@@ -740,7 +740,7 @@
                         <div class="footer-two__widget" data-aos="fade-up" data-aos-duration="1000">
                             <div class="footer-two__widget-logo">
                                 <a href="index.html">
-                                    <img src="assets/images/logo.png" style="height: 120px;" alt="" />
+                                    <img src="../assets/images/logo.png" style="height: 120px;" alt="" />
                                 </a>
                             </div>
                             <div class="footer-two__widget-content">
@@ -894,37 +894,66 @@
     </div>
     <!-- ==== js dependencies start ==== -->
     <!-- jquery -->
-    <script src="assets/js/jquery-3.7.1.min.js"></script>
+     <script>
+     document.addEventListener("DOMContentLoaded", () => {
+  const contactForm = document.querySelector(".contact-form");
+
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(contactForm);
+
+    try {
+      const res = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        alert(data.message);
+        contactForm.reset();
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Server error. Try later.");
+    }
+  });
+});
+</script>
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
     <!-- bootstrap five js -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
     <!-- nice select js -->
-    <script src="assets/js/jquery.nice-select.min.js"></script>
+    <script src="../assets/js/jquery.nice-select.min.js"></script>
     <!-- magnific popup js -->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
     <!-- swiper slider js -->
-    <script src="assets/js/swiper-bundle.min.js"></script>
+    <script src="../assets/js/swiper-bundle.min.js"></script>
     <!-- viewport js -->
-    <script src="assets/js/viewport.jquery.js"></script>
+    <script src="../assets/js/viewport.jquery.js"></script>
     <!-- odometer js -->
-    <script src="assets/js/odometer.min.js"></script>
+    <script src="../assets/js/odometer.min.js"></script>
     <!-- vanilla tilt js -->
-    <script src="assets/js/vanilla-tilt.min.js"></script>
+    <script src="../assets/js/vanilla-tilt.min.js"></script>
     <!-- aos js -->
-    <script src="assets/js/aos.js"></script>
+    <script src="../assets/js/aos.js"></script>
 
     <!-- splittext js -->
-    <script src="assets/js/SplitText.min.js"></script>
+    <script src="../assets/js/SplitText.min.js"></script>
     <!-- scrollto js -->
-    <script src="assets/js/ScrollToPlugin.min.js"></script>
+    <script src="../assets/js/ScrollToPlugin.min.js"></script>
     <!-- scrolltrigger js -->
-    <script src="assets/js/ScrollTrigger.min.js"></script>
+    <script src="../assets/js/ScrollTrigger.min.js"></script>
     <!-- gsap js -->
-    <script src="assets/js/gsap.min.js"></script>
+    <script src="../assets/js/gsap.min.js"></script>
     <!-- ==== / js dependencies end ==== -->
     <!-- template settings js -->
-    <script src="assets/js/template-settings.js"></script>
+    <script src="../assets/js/template-settings.js"></script>
     <!-- main js -->
-    <script src="assets/js/custom.js"></script>
+    <script src="../assets/js/custom.js"></script>
 </body>
 
 </html>
