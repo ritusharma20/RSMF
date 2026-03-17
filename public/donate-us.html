@@ -10,8 +10,8 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <!-- #favicon -->
-   <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
-   <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+   <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+   <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
    <!-- #title -->
    <title>Official Website | Rita Shiva Memorial Foundation</title>
    <!-- #keywords -->
@@ -39,19 +39,19 @@
    <link
       href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&amp;family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;family=Nunito:ital,wght@0,200..1000;1,200..1000&amp;family=Outfit:wght@100..900&amp;display=swap"
       rel="stylesheet"> <!-- main css -->
-   <link rel="stylesheet" href="assets/css/main.css">
+   <link rel="stylesheet" href="../assets/css/main.css">
    <!-- responsive css -->
-   <link rel="stylesheet" href="assets/css/responsive.css">
+   <link rel="stylesheet" href="../assets/css/responsive.css">
    <!-- color themes -->
-   <link rel="stylesheet" href="assets/css/default-theme.css" id="switch-color">
+   <link rel="stylesheet" href="../assets/css/default-theme.css" id="switch-color">
    <!-- want sticky header -->
-   <link rel="stylesheet" href="assets/css/sticky-header.css">
+   <link rel="stylesheet" href="../assets/css/sticky-header.css">
    <!-- box layout css -->
-   <link rel="stylesheet" href="assets/css/box-layout.css">
+   <link rel="stylesheet" href="../assets/css/box-layout.css">
    <!-- dark mode css -->
-   <link rel="stylesheet" href="assets/css/dark-mode.css">
+   <link rel="stylesheet" href="../assets/css/dark-mode.css">
    <!-- rtl css -->
-   <link rel="stylesheet" href="assets/css/rtl.css">
+   <link rel="stylesheet" href="../assets/css/rtl.css">
 	
 	<style>
   /* Logo as background */
@@ -189,7 +189,7 @@
 	
 </head>
 <body>
-    <form method="post" action="./Donation.aspx" id="form1">
+    <form method="post" id="form1">
 <div class="aspNetHidden">
 <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE4MzUyOTYxNzdkZL7M9VFYMz1EUtDX+MoVEfXkeiigjCq56+CZpcPVQDax" />
 </div>
@@ -211,7 +211,7 @@
 <!-- ==== preloader start ==== -->
       <div class="preloader">
        
-      <img class="icon-donation" src="assets/images/logo.png" style="height:300px;" alt=""/> </div>
+      <img class="icon-donation" src="../assets/images/logo.png" style="height:300px;" alt=""/> </div>
       <!-- ==== / preloader end ==== -->
       <!-- ==== topbar start ==== -->
       <div class="topbar topbar--secondary d-lg-block">
@@ -283,7 +283,7 @@
 
     <!-- Center Logo -->
     <div class="logo-wrapper">
-      <a class="navbar-brand logo-center mx-auto" href="Home.aspx"><img src="assets/images/logo.png" style="height: 140px;" alt="Rita Shiva Memorial Foundation"/></a>
+      <a class="navbar-brand logo-center mx-auto" href="Home.aspx"><img src="../assets/images/logo.png" style="height: 140px;" alt="Rita Shiva Memorial Foundation"/></a>
     </div>
 
     <!-- Navigation -->
@@ -366,7 +366,7 @@
             <div class="mobile-menu__header nav-fade">
                <div class="logo">
                   <a href="index.html" aria-label="home page" title="logo">
-                     <img src="assets/images/logo.png" alt="Image">
+                     <img src="../assets/images/logo.png" alt="Image">
                   </a>
                </div>
                <button aria-label="close mobile menu" class="close-mobile-menu">
@@ -409,10 +409,10 @@
             </div>
          </div>
          <div class="banner-bg">
-            <img src="assets/images/banner/banner-bg.png" alt="Image">
+            <img src="../assets/images/banner/banner-bg.png" alt="Image">
          </div>
          <div class="sprade" data-aos="zoom-in" data-aos-duration="1000">
-            <img src="assets/images/sprade-base.png" alt="Image" class="base-img">
+            <img src="../assets/images/sprade-base.png" alt="Image" class="base-img">
          </div>
       </section>
       <!-- ==== / banner section end ==== -->
@@ -440,8 +440,7 @@
 											  
                                              <i class="fa-solid">₹</i>
                                           </div>
-                                          <input type="text" name="donation-amount" id="donationAmount">
-                                       </div>
+<input type="text" name="donation-amount" id="donationAmount">                                       </div>
                                        <div class="made-amount">
                                           <span class="donation-amount">20</span>
                                           <span class="donation-amount">50</span>
@@ -459,7 +458,7 @@
                                  <div class="intro">
                                     <h5>Details Information</h5>
                                  </div>
-                                 <form action="index.html" method="post">
+                                 <!-- <form action="index.html" method="post"> -->
                                     <div class="input-group">
                                        <div class="input-single">
                                           <input type="text" name="c-name" id="cName" placeholder="Full Name" required>
@@ -487,10 +486,12 @@
                                    
                                    
                                     <div class="cta">
-                                       <a href="donate-us.html" aria-label="donate us" title="donate us"
-                                          class="btn--primary">Donate Now <i class="fa-solid fa-arrow-right"></i></a>
-                                    </div>
-                                 </form>
+  <!-- Changed from <a> to <button type="submit"> -->
+  <button type="submit" class="btn--primary" aria-label="donate us" title="donate us">
+    Donate Now <i class="fa-solid fa-arrow-right"></i>
+  </button>
+</div>
+                                 <!-- </form> -->
                               </div>
                            </div>
                         </div>
@@ -504,7 +505,7 @@
                     
                      <div class="cm-sidebar-overview" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
                         <div class="cm-logo">
-                           <img src="assets/images/event/logo.png" alt="Image">
+                           <img src="../assets/images/event/logo.png" alt="Image">
                         </div>
                         <div class="cm-content">
                            <p>Small Donations Bigger Impact</p>
@@ -517,7 +518,7 @@
                               Donate Now <i class="fa-solid fa-arrow-right"></i>
                            </a>
                         </div>
-                        <img src="assets/images/event/overview.png" alt="Image" class="parallax-image">
+                        <img src="../assets/images/event/overview.png" alt="Image" class="parallax-image">
                      </div>
                   </div>
                </div>
@@ -536,7 +537,7 @@
                   <div class="footer-two__widget" data-aos="fade-up" data-aos-duration="1000">
                      <div class="footer-two__widget-logo">
                         <a href="Home.aspx">
-						   <img src="assets/images/logo.png" style="height: 120px;" alt="Rita Shiva Memorial Foundation"/> 
+						   <img src="../assets/images/logo.png" style="height: 120px;" alt="Rita Shiva Memorial Foundation"/> 
                         </a>
                      </div>
                      <div class="footer-two__widget-content">
@@ -692,36 +693,73 @@
     </form>
     <!-- ==== js dependencies start ==== -->
    <!-- jquery -->
-   <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script>
+  const form = document.getElementById("form1");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const data = {
+      name: document.getElementById("cName").value,
+      email: document.getElementById("cEmail").value,
+      phone: document.getElementById("cPhone").value,
+      address: document.getElementById("cAddressTwo").value,
+      donationAmount: Number(document.getElementById("donationAmount").value) || 0,
+      message: ""
+    };
+
+    console.log("Submitting donation:", data);
+
+    try {
+      const res = await fetch("http://localhost:5000/api/donor", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(data)
+});
+
+      const result = await res.json();
+      if (res.ok) {
+        alert(result.message);
+        form.reset();
+      } else {
+        alert(result.error || "Something went wrong");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Server error. Please try again later.");
+    }
+  });
+</script>
+   <script src="../assets/js/jquery-3.7.1.min.js"></script>
    <!-- bootstrap five js -->
-   <script src="assets/js/bootstrap.bundle.min.js"></script>
+   <script src="../assets/js/bootstrap.bundle.min.js"></script>
    <!-- nice select js -->
-   <script src="assets/js/jquery.nice-select.min.js"></script>
+   <script src="../assets/js/jquery.nice-select.min.js"></script>
    <!-- magnific popup js -->
-   <script src="assets/js/jquery.magnific-popup.min.js"></script>
+   <script src="../assets/js/jquery.magnific-popup.min.js"></script>
    <!-- swiper slider js -->
-   <script src="assets/js/swiper-bundle.min.js"></script>
+   <script src="../assets/js/swiper-bundle.min.js"></script>
    <!-- viewport js -->
-   <script src="assets/js/viewport.jquery.js"></script>
+   <script src="../assets/js/viewport.jquery.js"></script>
    <!-- odometer js -->
-   <script src="assets/js/odometer.min.js"></script>
+   <script src="../assets/js/odometer.min.js"></script>
    <!-- vanilla tilt js -->
-   <script src="assets/js/vanilla-tilt.min.js"></script>
+   <script src="../assets/js/vanilla-tilt.min.js"></script>
    <!-- aos js -->
-   <script src="assets/js/aos.js"></script>
+   <script src="../assets/js/aos.js"></script>
 
    <!-- splittext js -->
-   <script src="assets/js/SplitText.min.js"></script>
+   <script src="../assets/js/SplitText.min.js"></script>
    <!-- scrollto js -->
-   <script src="assets/js/ScrollToPlugin.min.js"></script>
+   <script src="../assets/js/ScrollToPlugin.min.js"></script>
    <!-- scrolltrigger js -->
-   <script src="assets/js/ScrollTrigger.min.js"></script>
+   <script src="../assets/js/ScrollTrigger.min.js"></script>
    <!-- gsap js -->
-   <script src="assets/js/gsap.min.js"></script>
+   <script src="../assets/js/gsap.min.js"></script>
    <!-- ==== / js dependencies end ==== -->
    <!-- template settings js -->
-   <script src="assets/js/template-settings.js"></script>
+   <script src="../assets/js/template-settings.js"></script>
    <!-- main js -->
-   <script src="assets/js/custom.js"></script>
+   <script src="../assets/js/custom.js"></script>
 </body>
 </html>

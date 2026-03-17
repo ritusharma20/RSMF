@@ -28,6 +28,10 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // API Routes
 // ---------------------
 app.use("/api/contact", contactRoutes);
+import donarRoutes from "./routes/donarRoutes.js";
+app.use("/api/donor", donarRoutes);
+import galleryRoutes from "./routes/gallery.js";
+app.use("/api/gallery", galleryRoutes);
 
 // Admin API route to fetch all contact submissions
 app.get("/api/contact/admin", async (req, res) => {

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard | Media Gallery</title>
+
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; background: #f9f9f9; }
+h2 { color: #2f5d50; }
+
+form { margin-bottom: 30px; }
+input, button { padding: 10px; margin: 5px 0; width: 100%; }
+
+button {
+  background-color: #e1a63b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover { background-color: #c88e29; }
+
+.gallery-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.gallery-card {
+  width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.gallery-card h5 {
+  text-align: center;
+  padding: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Admin Media Gallery Dashboard</h2>
+
+<!-- ✅ Upload Form -->
+<form id="uploadForm">
+  <input type="text" name="title" placeholder="Image Title" required>
+  <input type="file" name="image" accept="image/*" required>
+  <button type="submit">Upload Image</button>
+</form>
+
+<h3>Existing Gallery</h3>
+
+<div class="gallery-preview" id="galleryPreview"></div>
+
+<script>
+const form = document.getElementById('uploadForm');
+const gallery = document.getElementById('galleryPreview');
+
+
+// ✅ Load Gallery Images
+async function loadGallery() {
+  try {
+    const res = await fetch('http://localhost:5000/api/gallery/gallery');
+    const data = await res.json();
+
+    gallery.innerHTML = '';
+
+    data.forEach(item => {
+      const div = document.createElement('div');
+      div.classList.add('gallery-card');
+
+      div.innerHTML = `
+        <img src="http://localhost:5000/uploads/${item.filename}" alt="${item.title}">
+        <h5>${item.title}</h5>
+      `;
+
+      gallery.appendChild(div);
+    });
+
+  } catch (err) {
+    console.error(err);
+    alert('Failed to load gallery');
+  }
+}
+
+
+// ✅ Upload Image (JS se)
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  try {
+    const res = await fetch('http://localhost:5000/api/gallery/upload', {
+      method: 'POST',
+      body: formData
+    });
+
+    const data = await res.json();
+
+    alert(data.message || "Uploaded successfully");
+
+    form.reset();
+    loadGallery();
+
+  } catch (err) {
+    console.error(err);
+    alert('Upload failed');
+  }
+});
+
+
+// Page load pe run
+loadGallery();
+</script>
+
+</body>
+</html>
