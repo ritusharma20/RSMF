@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin - Stories of Change</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(to right,#dfe6ec,#cfd6dd);
+  margin:0;
+  padding:0;
+}
+
+/* TITLE */
+.title{
+  text-align:center;
+  margin-top:20px;
+  font-size:28px;
+  font-weight:600;
+  color:#2c5c5c;
+}
+
+/* FORM CARD */
+.card{
+  width:70%;
+  margin:20px auto;
+  background:#f2f2f2;
+  padding:25px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* INPUT */
+input, textarea{
+  width:100%;
+  padding:15px;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:14px;
+}
+
+textarea{
+  height:120px;
+}
+
+/* BUTTON */
+.upload-btn{
+  background:linear-gradient(to right,#ff8a00,#ff5e00);
+  border:none;
+  padding:12px 25px;
+  color:#fff;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+/* STORY CARD */
+.story-card{
+  width:70%;
+  margin:20px auto;
+  background:#f2f2f2;
+  border-radius:20px;
+  padding:20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* LEFT IMAGE */
+.story-img{
+  width:100px;
+  height:80px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+/* CENTER TEXT */
+.story-content{
+  flex:1;
+  margin-left:20px;
+}
+
+.story-content h3{
+  margin:0;
+  color:#2c5c5c;
+}
+
+.story-content p{
+  margin-top:5px;
+  color:#555;
+  font-size:14px;
+}
+
+/* BUTTONS */
+.btn{
+  padding:8px 15px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  margin-left:10px;
+}
+
+.delete{
+  background:#ff4d4d;
+  color:#fff;
+}
+
+.edit{
+  background:#007bff;
+  color:#fff;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="title"> About Us</div>
+
+<!-- FORM -->
+<div class="card">
+
+<input id="title" placeholder="Enter Title">
+<textarea id="content" placeholder="Enter Description"></textarea>
+<input type="file" id="image">
+
+<button class="upload-btn" onclick="addStory()">🚀 Upload Story</button>
+
+</div>
+
+<!-- DATA -->
+<div id="stories"></div>
+
+<script>
+
+let editId = null;
+
+// LOAD DATA
+async function loadStories(){
+  const res = await fetch("http://localhost:5000/api/about");
+  const data = await res.json();
+
+  let html="";
+
+  data?.sections?.forEach(sec=>{
+
+    html += `
+    <div class="story-card">
+      
+      <img class="story-img" src="http://localhost:5000/uploads/${sec.image}" />
+
+      <div class="story-content">
+        <h3>${sec.title}</h3>
+        <p>${sec.content}</p>
+      </div>
+
+      <div>
+        <button class="btn edit" onclick="editStory('${sec._id}','${sec.title}','${sec.content}')">Edit</button>
+        <button class="btn delete" onclick="deleteStory('${sec._id}')">Delete</button>
+      </div>
+
+    </div>
+    `;
+  });
+
+  document.getElementById("stories").innerHTML = html;
+}
+
+// ADD / UPDATE
+async function addStory(){
+
+  const formData = new FormData();
+  formData.append("title", title.value);
+  formData.append("content", content.value);
+
+  if(image.files[0]){
+    formData.append("image", image.files[0]);
+  }
+
+  if(editId){
+    await fetch(`http://localhost:5000/api/about/${editId}`,{
+      method:"PUT",
+      body:formData
+    });
+    editId = null;
+    alert("Updated ✅");
+  } else {
+    await fetch("http://localhost:5000/api/about",{
+      method:"POST",
+      body:formData
+    });
+    alert("Added ✅");
+  }
+
+  title.value="";
+  content.value="";
+  image.value="";
+
+  loadStories();
+}
+
+// DELETE
+async function deleteStory(id){
+  await fetch(`http://localhost:5000/api/about/${id}`,{
+    method:"DELETE"
+  });
+
+  loadStories();
+}
+
+// EDIT
+function editStory(id,t,c){
+  editId = id;
+  title.value = t;
+  content.value = c;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+loadStories();
+
+</script>
+
+</body>
+</html>

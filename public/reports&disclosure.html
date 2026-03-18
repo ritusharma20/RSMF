@@ -722,7 +722,7 @@
 </tr>
 </thead>
 
-<tbody>
+<!-- <tbody>
 
 <tr>
 <td>01</td>
@@ -774,6 +774,10 @@ View PDF
 </td>
 </tr>
 
+</tbody> -->
+
+
+<tbody id="reportData">
 </tbody>
 </table>
 
@@ -971,6 +975,43 @@ View PDF
    <script src="assets/js/template-settings.js"></script>
    <!-- main js -->
    <script src="assets/js/custom.js"></script>
+
+
+
+   <script>
+
+
+
+const API = "http://localhost:5000/api/reports";
+
+async function loadReports(){
+  const res = await fetch(API);
+  const data = await res.json();
+
+  let html = "";
+
+  data.forEach((r, index)=>{
+
+    html += `
+    <tr>
+      <td>${index+1}</td>
+      <td>${r.title}</td>
+      <td>
+        <a href="http://localhost:5000/uploads/pdfs/${r.pdf}" target="_blank" class="pdf-btn">
+          View PDF
+        </a>
+      </td>
+    </tr>
+    `;
+
+  });
+
+  document.getElementById("reportData").innerHTML = html;
+}
+
+loadReports();
+
+</script>
 </body>
 
 </html>

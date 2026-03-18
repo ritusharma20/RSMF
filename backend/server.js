@@ -34,6 +34,13 @@ import galleryRoutes from "./routes/gallery.js";
 app.use("/api/gallery", galleryRoutes);
 import storyRoutes from "./routes/storyRoutes.js";
 app.use("/api/stories", storyRoutes);
+import aboutRoutes from "./routes/aboutroutes.js";
+app.use("/api/about", aboutRoutes);
+import teamRoutes from "./routes/teamroutes.js";
+app.use("/api/team", teamRoutes);
+
+import reportRoutes from "./routes/reportroutes.js";
+app.use("/api/reports", reportRoutes);
 
 // Admin API route to fetch all contact submissions
 app.get("/api/contact/admin", async (req, res) => {

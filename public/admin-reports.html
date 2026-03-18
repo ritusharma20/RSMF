@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Panel - Reports</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  background: #f4f6f9;
+  padding: 20px;
+}
+
+/* FORM */
+.form-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.1);
+  margin-bottom: 30px;
+}
+
+.form-box h3 {
+  margin-bottom: 15px;
+}
+
+input, textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+button {
+  background: #b58016;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  background: #fff;
+  border-collapse: collapse;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background: #b58016;
+  color: #fff;
+}
+
+.action-btn {
+  margin: 2px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.edit { background: green; color: #fff; }
+.delete { background: red; color: #fff; }
+.view { background: #0b5ed7; color: #fff; }
+
+/* PDF Button */
+.pdf-btn {
+  background: #0b5ed7;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.pdf-btn:hover {
+  opacity: 0.9;
+}
+</style>
+</head>
+<body>
+
+<div class="form-box">
+  <h3 id="formTitle">Add Report</h3>
+
+  <input type="hidden" id="reportId">
+  <input type="text" id="title" placeholder="Title">
+  <textarea id="desc" placeholder="Description"></textarea>
+  <label>PDF</label>
+  <input type="file" id="pdf" name="pdf">
+  <button id="submitBtn">Submit</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>S.no</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>PDF</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="data"></tbody>
+</table>
+
+<script>
+const API = "http://localhost:5000/api/reports";
+let editMode = false;
+
+// Load all reports
+async function loadData() {
+  try {
+    const res = await fetch(API);
+    const reports = await res.json();
+
+    let html = "";
+    reports.forEach((r, i) => {
+      html += `
+      <tr>
+        <td>${i + 1}</td>
+        <td>${r.title}</td>
+        <td>${r.description}</td>
+        <td>
+          ${r.pdf ? `<button class="pdf-btn" onclick="viewPDF('${r.pdf}')">View PDF</button>` : 'No PDF'}
+        </td>
+        <td>
+          <button class="action-btn edit" onclick="editReport('${r._id}','${r.title}','${r.description}')">Edit</button>
+          <button class="action-btn delete" onclick="deleteReport('${r._id}')">Delete</button>
+        </td>
+      </tr>`;
+    });
+
+    document.getElementById("data").innerHTML = html;
+  } catch (err) {
+    console.error("Error loading data:", err);
+  }
+}
+
+// Open PDF in new tab
+function viewPDF(filename) {
+  window.open(`http://localhost:5000/uploads/pdfs/${filename}`, '_blank');
+}
+
+// Submit form (Add / Update)
+async function submitForm() {
+  const formData = new FormData();
+  formData.append("title", document.getElementById("title").value);
+  formData.append("description", document.getElementById("desc").value);
+
+  if(document.getElementById("pdf").files[0])
+    formData.append("pdf", document.getElementById("pdf").files[0]);
+
+  try {
+    if(editMode) {
+      const id = document.getElementById("reportId").value;
+      await fetch(`${API}/${id}`, { method: "PUT", body: formData });
+      editMode = false;
+      document.getElementById("formTitle").innerText = "Add Report";
+    } else {
+      await fetch(API, { method: "POST", body: formData });
+    }
+
+    resetForm();
+    loadData();
+
+  } catch(err) {
+    console.error("Error submitting form:", err);
+  }
+}
+
+// Edit report
+function editReport(id, title, description) {
+  document.getElementById("reportId").value = id;
+  document.getElementById("title").value = title;
+  document.getElementById("desc").value = description;
+
+  editMode = true;
+  document.getElementById("formTitle").innerText = "Update Report";
+}
+
+// Delete report
+async function deleteReport(id) {
+  if(confirm("Delete this report?")) {
+    await fetch(`${API}/${id}`, { method: "DELETE" });
+    loadData();
+  }
+}
+
+// Reset form
+function resetForm() {
+  document.getElementById("title").value = "";
+  document.getElementById("desc").value = "";
+  document.getElementById("pdf").value = "";
+}
+
+document.getElementById("submitBtn").addEventListener("click", submitForm);
+
+// Initial load
+loadData();
+</script>
+
+</body>
+</html>

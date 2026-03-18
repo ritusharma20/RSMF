@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Team Admin Panel</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:Poppins;
+  background:linear-gradient(135deg,#eef2f7,#cfd9df);
+}
+
+.container{
+  width:95%;
+  max-width:1100px;
+  margin:auto;
+  padding:30px 0;
+}
+
+h1{text-align:center;margin-bottom:20px;}
+
+/* FORM */
+.form-box{
+  background:#fff;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  margin-bottom:30px;
+}
+
+input, textarea{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+button{
+  background:#b58016;
+  color:#fff;
+  padding:10px 18px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+button:hover{background:#8c640f;}
+
+/* GRID */
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+.card:hover{transform:translateY(-6px);}
+
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
+
+.card-content{
+  padding:15px;
+  text-align:center;
+}
+
+.card-content span{
+  color:#b58016;
+  font-weight:600;
+}
+
+.actions button{
+  margin:5px;
+  padding:6px 10px;
+  font-size:12px;
+}
+
+.edit{background:#3498db;}
+.delete{background:#e74c3c;}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>👨‍💼 Team Admin Panel</h1>
+
+<!-- FORM -->
+
+<div class="form-box">
+<form id="teamForm">
+
+<input type="hidden" id="id">
+
+<input type="text" id="name" placeholder="Enter Name" required>
+<input type="text" id="role" placeholder="Enter Role" required>
+<textarea id="description" placeholder="Enter Description" required></textarea>
+<input type="file" id="image">
+
+<button type="submit">Save Member</button>
+
+</form>
+</div>
+
+<!-- TEAM LIST -->
+
+<div class="team-grid" id="teamList"></div>
+
+</div>
+
+<script>
+
+const BASE_URL = "http://localhost:5000";
+
+// ELEMENTS
+const form = document.getElementById("teamForm");
+const list = document.getElementById("teamList");
+
+const nameInput = document.getElementById("name");
+const roleInput = document.getElementById("role");
+const descInput = document.getElementById("description");
+const imageInput = document.getElementById("image");
+const idInput = document.getElementById("id");
+
+// 🔥 LOAD DATA
+async function loadTeam(){
+  const res = await fetch(`${BASE_URL}/api/team`);
+  const data = await res.json();
+
+  list.innerHTML = "";
+
+  data.forEach(t => {
+    list.innerHTML += `
+      <div class="card">
+        <img src="${t.image || 'https://via.placeholder.com/300'}">
+
+        <div class="card-content">
+          <h3>${t.name}</h3>
+          <span>${t.role}</span>
+          <p>${t.description}</p>
+
+          <div class="actions">
+            <button class="edit" onclick='editData(${JSON.stringify(t)})'>Edit</button>
+            <button class="delete" onclick="deleteData('${t._id}')">Delete</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// 🔥 ADD / UPDATE
+form.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+
+  const formData = new FormData();
+  formData.append("name", nameInput.value);
+  formData.append("role", roleInput.value);
+  formData.append("description", descInput.value);
+
+  if(imageInput.files[0]){
+    formData.append("image", imageInput.files[0]);
+  }
+
+  const id = idInput.value;
+
+  if(id){
+    await fetch(`${BASE_URL}/api/team/${id}`, {
+      method:"PUT",
+      body:formData
+    });
+  } else {
+    await fetch(`${BASE_URL}/api/team`, {
+      method:"POST",
+      body:formData
+    });
+  }
+
+  form.reset();
+  idInput.value = "";
+  loadTeam();
+});
+
+// 🔥 EDIT
+function editData(data){
+  idInput.value = data._id;
+  nameInput.value = data.name;
+  roleInput.value = data.role;
+  descInput.value = data.description;
+}
+
+// 🔥 DELETE
+async function deleteData(id){
+  if(confirm("Delete this member?")){
+    await fetch(`${BASE_URL}/api/team/${id}`, {
+      method:"DELETE"
+    });
+    loadTeam();
+  }
+}
+
+// INIT
+loadTeam();
+
+</script>
+
+</body>
+</html>
