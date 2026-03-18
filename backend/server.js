@@ -32,6 +32,8 @@ import donarRoutes from "./routes/donarRoutes.js";
 app.use("/api/donor", donarRoutes);
 import galleryRoutes from "./routes/gallery.js";
 app.use("/api/gallery", galleryRoutes);
+import storyRoutes from "./routes/storyRoutes.js";
+app.use("/api/stories", storyRoutes);
 
 // Admin API route to fetch all contact submissions
 app.get("/api/contact/admin", async (req, res) => {

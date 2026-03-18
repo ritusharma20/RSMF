@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Stories of Change</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #eef2f7, #dfe9f3);
+    margin: 0;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #2f5d50;
+    margin-bottom: 30px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+/* FORM */
+form {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+form:hover {
+    transform: translateY(-5px);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+button {
+    padding: 12px 20px;
+    background: linear-gradient(45deg, #ff9a3c, #ff6a00);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* STORY LIST */
+.story {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    align-items: center;
+    transition: transform 0.4s, box-shadow 0.4s, opacity 0.5s;
+    opacity: 0;
+}
+
+.story.visible {
+    opacity: 1;
+}
+
+.story:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.story:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.story img {
+    width: 250px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    flex-shrink: 0;
+    transition: transform 0.4s;
+}
+
+.story:hover img {
+    transform: scale(1.05);
+}
+
+.story-content {
+    flex: 1;
+    padding: 0 15px;
+}
+
+.story-content h4 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #2f5d50;
+}
+
+.story-content p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+    padding: 8px 14px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 13px;
+}
+
+.delete-btn:hover {
+    background: #e60000;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .story {
+        flex-direction: column !important;
+        text-align: center;
+    }
+
+    .story img {
+        width: 100%;
+        height: 200px;
+    }
+
+    .story-content {
+        padding: 10px 0;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h2>✨ Admin - Stories of Change</h2>
+
+<!-- FORM -->
+<form id="storyForm" enctype="multipart/form-data">
+    <input type="text" name="title" placeholder="Enter Title" required>
+    <textarea name="description" placeholder="Enter Description" required></textarea>
+    <input type="file" name="image" required>
+    <button type="submit">🚀 Upload Story</button>
+</form>
+
+<!-- STORY LIST -->
+<div id="storyList"></div>
+
+</div>
+
+<script>
+const API = "http://localhost:5000/api/stories";
+
+/* ================= ADD STORY ================= */
+document.getElementById("storyForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    try {
+        const res = await fetch(`${API}/add`, {
+            method: "POST",
+            body: formData
+        });
+        const data = await res.json();
+        alert(data.message);
+        e.target.reset();
+        loadStories();
+    } catch(err) {
+        alert("Error uploading story: " + err.message);
+    }
+});
+
+/* ================= LOAD STORIES ================= */
+async function loadStories() {
+    try {
+        const res = await fetch(`${API}/all`);
+        const data = await res.json();
+
+        const container = document.getElementById("storyList");
+        container.innerHTML = "";
+
+        data.stories.forEach((story, idx) => {
+            const div = document.createElement("div");
+            div.className = "story";
+            div.innerHTML = `
+                <img src="http://localhost:5000/uploads/stories/${story.image}" alt="${story.title}" />
+                <div class="story-content">
+                    <h4>${story.title}</h4>
+                    <p>${story.description}</p>
+                </div>
+                <button class="delete-btn" onclick="deleteStory('${story._id}', this)">Delete</button>
+            `;
+            container.appendChild(div);
+
+            // Fade-in animation
+            setTimeout(() => {
+                div.classList.add("visible");
+            }, idx * 150);
+        });
+    } catch(err) {
+        console.error(err);
+        document.getElementById("storyList").innerHTML = `<p style="text-align:center;color:red;">Failed to load stories</p>`;
+    }
+}
+
+/* ================= DELETE STORY ================= */
+async function deleteStory(id, btn) {
+    if(!confirm("Delete this story?")) return;
+
+    try {
+        await fetch(`${API}/delete/${id}`, {
+            method: "DELETE"
+        });
+
+        // Remove element from DOM with fade out
+        const storyDiv = btn.closest(".story");
+        storyDiv.style.transition = "opacity 0.5s, transform 0.5s";
+        storyDiv.style.opacity = 0;
+        storyDiv.style.transform = "scale(0.95)";
+        setTimeout(() => storyDiv.remove(), 500);
+
+    } catch(err) {
+        alert("Error deleting story: " + err.message);
+    }
+}
+
+/* ================= INIT ================= */
+loadStories();
+</script>
+
+</body>
+</html>
