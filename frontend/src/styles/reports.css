@@ -1,0 +1,30 @@
+.report-form-box{
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  margin-bottom:30px;
+}
+
+.report-table{
+  width:100%;
+  border-collapse:collapse;
+  background:#fff;
+}
+
+.report-table th{
+  background:#b58016;
+  color:#fff;
+}
+
+.report-table th,
+.report-table td{
+  padding:12px;
+  border:1px solid #ddd;
+  text-align:center;
+}
+
+.action-btn{
+  margin:2px;
+  padding:5px 10px;
+}
