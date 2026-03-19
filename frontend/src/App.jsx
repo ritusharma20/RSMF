@@ -7,6 +7,8 @@ import AdminTeam from "./pages/AdminTeam";
 import AdminReports from "./pages/AdminReports";
 import AdminStories from "./pages/AdminStories";
 import Volunteers from "./pages/Volunteers"; // ✅ Import new page
+import AdminContact from "./pages/AdminContact";
+
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route path="/admin-stories" element={<AdminStories />} />
 
                 <Route path="/admin-volunteers" element={<Volunteers />} /> {/* ✅ New Route */}
+                <Route path="/admin/contact" element={<AdminContact />} />
+
 
 
       </Routes>

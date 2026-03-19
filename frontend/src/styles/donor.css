@@ -1,68 +1,108 @@
-body {
+/* ===== PAGE WRAPPER (Scoped CSS) ===== */
+.donation-page {
   font-family: Arial, sans-serif;
   background: #f9f9f9;
-  margin: 0;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
-h2 {
+/* ===== CARD ===== */
+.donation-page .card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* ===== HEADING ===== */
+.donation-page h2 {
   color: #333;
   margin-bottom: 20px;
   font-size: 22px;
 }
 
-.table-container {
+/* ===== TABLE CONTAINER ===== */
+.donation-page .table-container {
   width: 100%;
-  overflow: hidden; /* no horizontal scroll */
+  overflow: hidden;
 }
 
-.table-container table {
+/* ===== TABLE ===== */
+.donation-page .table-container table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
   background: #fff;
-  table-layout: fixed; /* fix column widths */
 }
 
-.table-container th,
-.table-container td {
-  border: 1px solid #ddd;
-  padding: 4px;
-  text-align: left;
-  font-size: 15px;
-  word-wrap: break-word; /* prevent overflow */
-}
-
-.table-container th {
-  background: #f4b041; /* orange header */
+/* ===== TABLE HEADER ===== */
+.donation-page .table-container th {
+  background: #f4b041;
   color: #fff;
-  height: 35px; /* smaller header height */
-}
-
-.table-container tr:nth-child(even) {
-  background: #f9f9f9; /* striped rows */
-}
-
-.table-container button {
-  background: red;
-  color: #fff;
-  border: none;
-  padding: 6px 10px;
-  cursor: pointer;
-  border-radius: 0; /* flat button */
+  height: 35px;
   font-size: 14px;
-  font-family: Arial, sans-serif;
-  transition: 0.3s;
+  padding: 6px;
+  border: 1px solid #ddd;
+  text-align: left;
 }
 
-.table-container button:hover {
-  background: darkred;
+/* ===== TABLE CELLS ===== */
+.donation-page .table-container td {
+  border: 1px solid #ddd;
+  padding: 6px;
+  font-size: 16px;
+  text-align: left;
+  word-wrap: break-word;
+  vertical-align: middle;
 }
 
-a {
-  color: #0066cc;
-  text-decoration: none;
+/* ===== STRIPED ROWS ===== */
+.donation-page .table-container tr:nth-child(even) {
+  background: #f9f9f9;
 }
 
-a:hover {
-  text-decoration: underline;
+/* ===== ACTION COLUMN CENTER ===== */
+.donation-page .table-container th:last-child,
+.donation-page .table-container td:last-child {
+  text-align: center;
+}
+
+/* ===== BUTTON CENTER FIX ===== */
+.donation-page .table-container td button {
+  display: block;
+  margin: auto;
+}
+
+/* ===== BUTTON STYLE ===== */
+.donation-page .btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  height: 34px;
+  cursor: pointer;
+  border: none;
+}
+
+/* ===== DELETE BUTTON ===== */
+.donation-page .btn-red {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.donation-page .btn-red:hover {
+  background: #c0392b;
+}
+
+/* ===== OPTIONAL COLUMN WIDTH FIX ===== */
+.donation-page .table-container th:nth-child(1),
+.donation-page .table-container td:nth-child(1) {
+  width: 50px;
+}
+
+.donation-page .table-container th:nth-child(6),
+.donation-page .table-container td:nth-child(6) {
+  width: 120px;
+}
+
+.donation-page .table-container th:nth-child(9),
+.donation-page .table-container td:nth-child(9) {
+  width: 100px;
 }

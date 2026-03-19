@@ -86,7 +86,7 @@ const AdminTeam = () => {
     <Layout>
       <div className="admin-team-container">
 
-        <h1>Team Panel</h1>
+        <h2>Team Panel</h2>
 
         {/* FORM */}
         <div className="form-box">

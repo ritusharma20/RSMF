@@ -41,6 +41,8 @@ app.use("/api/team", teamRoutes);
 
 import reportRoutes from "./routes/reportroutes.js";
 app.use("/api/reports", reportRoutes);
+import volunteerRoutes from "./routes/volunteerRoutes.js";
+app.use("/api/volunteers", volunteerRoutes);
 
 // Admin API route to fetch all contact submissions
 app.get("/api/contact/admin", async (req, res) => {

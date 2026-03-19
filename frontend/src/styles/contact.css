@@ -1,0 +1,26 @@
+/* 🔥 CONTACT PAGE ONLY */
+.contact table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.contact th,
+.contact td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.contact th {
+  background: #f4b041;
+  color: #fff;
+}
+
+.contact a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}

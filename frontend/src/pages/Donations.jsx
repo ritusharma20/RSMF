@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Layout from "../layout/Layout";
-import "../styles/donor.css";
+// import "../styles/donor.css";
 
 const Donations = () => {
   const [donors, setDonors] = useState([]);
@@ -32,6 +32,8 @@ const Donations = () => {
 
   return (
     <Layout>
+        <div className="donation-page">
+
       <div className="card">
         <h2>Donor List</h2>
         <div className="table-container">
@@ -66,7 +68,7 @@ const Donations = () => {
                     <td>{d.message || "-"}</td>
                     <td>{new Date(d.createdAt).toLocaleString()}</td>
                     <td>
-                      <button onClick={() => handleDelete(d._id)}>Delete</button>
+                      <button className="btn btn-red" onClick={() => handleDelete(d._id)}>Delete</button>
                     </td>
                   </tr>
                 ))
@@ -74,6 +76,7 @@ const Donations = () => {
             </tbody>
           </table>
         </div>
+      </div>
       </div>
     </Layout>
   );
