@@ -1,0 +1,432 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin - Volunteers</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#eef2ff,#f8fbff);
+    margin:0;
+    padding:20px;
+}
+
+.container {
+    max-width:1200px;
+    margin:auto;
+}
+
+h1 {
+    text-align:center;
+    margin-bottom:30px;
+}
+
+/* Card */
+.card {
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Table */
+table {
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td {
+    padding:12px;
+    text-align:left;
+}
+
+th {
+    background:#6c63ff;
+    color:#fff;
+}
+
+tr:nth-child(even){
+    background:#f2f2f2;
+}
+
+/* Button */
+.delete-btn {
+    background:red;
+    color:#fff;
+    border:none;
+    padding:6px 12px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.delete-btn:hover {
+    opacity:0.8;
+}
+
+/* Loader */
+.loader {
+    text-align:center;
+    padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Volunteer Applications</h1>
+
+    <div class="card">
+        <div id="loader" class="loader">Loading data...</div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Interest</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="volunteerTable"></tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+const API = "http://localhost:5000/api/volunteers";
+
+// ✅ Load Volunteers
+async function loadVolunteers() {
+    try {
+        const res = await fetch(`${API}/all`);
+        const data = await res.json();
+
+        document.getElementById("loader").style.display = "none";
+
+        const table = document.getElementById("volunteerTable");
+
+        if (data.volunteers.length === 0) {
+            table.innerHTML = `<tr><td colspan="6">No Data Found</td></tr>`;
+            return;
+        }
+
+        table.innerHTML = data.volunteers.map(v => `
+            <tr>
+                <td>${v.name}</td>
+                <td>${v.email}</td>
+                <td>${v.phone}</td>
+                <td>${v.interest}</td>
+                <td>${v.message}</td>
+                <td>
+                    <button class="delete-btn" onclick="deleteVolunteer('${v._id}')">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        `).join("");
+
+    } catch (error) {
+        console.error(error);
+        alert("Error loading data");
+    }
+}
+
+// ✅ Delete Volunteer
+async function deleteVolunteer(id) {
+    if (!confirm("Delete this record?")) return;
+
+    try {
+        console.log("Deleting ID:", id); // debug
+
+        const res = await fetch(`${API}/${id}`, {
+            method: "DELETE"
+        });
+
+        const data = await res.json();
+
+        alert(data.message);
+        loadVolunteers();
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+// Load data on page load
+loadVolunteers();
+</script>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Volunteer Panel</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#eef2ff,#f8fbff);
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+}
+
+/* CARD */
+.card{
+    background:#fff;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    margin-bottom:20px;
+}
+
+/* INPUT */
+input{
+    padding:10px;
+    margin:5px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+/* BUTTON */
+button{
+    padding:8px 12px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:5px;
+    margin-right:5px;
+}
+
+.add-btn{background:#4CAF50;color:#fff;}
+.edit-btn{background:#2196F3;color:#fff;}
+.delete-btn{background:#f44336;color:#fff;}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:10px;
+}
+
+th{
+    background:#ffae63;
+    color:#fff;
+}
+
+tr:nth-child(even){
+    background:#f2f2f2;
+}
+
+/* HIDE FORMS BY DEFAULT */
+#editCard, #addCard{
+    display:none;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>Admin Volunteer Panel</h1>
+
+
+<!-- ADD FORM (HIDDEN BY DEFAULT) -->
+<div class="card" id="addCard">
+<h3>Add Volunteer</h3>
+<form id="addForm">
+<input type="text" id="name" placeholder="Name" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="text" id="phone" placeholder="Phone">
+<input type="text" id="interest" placeholder="Interest">
+<input type="text" id="message" placeholder="Message">
+<button type="submit" class="add-btn">Add</button>
+<button type="button" onclick="hideAddForm()">Cancel</button>
+</form>
+</div>
+
+<!-- EDIT FORM (HIDDEN BY DEFAULT) -->
+<div class="card" id="editCard">
+<h3>Edit Volunteer</h3>
+<form id="editForm">
+<input type="hidden" id="editId">
+<input type="text" id="editName" placeholder="Name">
+<input type="email" id="editEmail" placeholder="Email">
+<input type="text" id="editPhone" placeholder="Phone">
+<input type="text" id="editInterest" placeholder="Interest">
+<input type="text" id="editMessage" placeholder="Message">
+<button type="submit" class="edit-btn">Update</button>
+<button type="button" onclick="hideEditForm()">Cancel</button>
+</form>
+</div>
+
+<!-- TABLE + SEARCH -->
+<div class="card">
+<h3>All Volunteers</h3>
+<input type="text" id="search" placeholder="Search by name or email...">
+<button onclick="searchVolunteer()">Search</button>
+<!-- BUTTON TO SHOW ADD FORM -->
+<button onclick="showAddForm()" class="add-btn"  style="text-align:right; margin:10px 0 0 60%;">Add New Volunteer</button>
+
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Interest</th>
+<th>Message</th> <!-- ✅ Added this missing column -->
+
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="table"></tbody>
+</table>
+</div>
+
+</div>
+
+<script>
+const API = "http://localhost:5000/api/volunteers";
+
+// SHOW/HIDE FORMS
+function showAddForm(){
+    document.getElementById("addCard").style.display = "block";
+    window.scrollTo({top: document.getElementById("addCard").offsetTop - 20, behavior:'smooth'});
+}
+function hideAddForm(){
+    document.getElementById("addCard").style.display = "none";
+    document.getElementById("addForm").reset();
+}
+
+function fillEdit(id,name,email,phone,interest,message){
+    document.getElementById("editId").value = id;
+    document.getElementById("editName").value = name;
+    document.getElementById("editEmail").value = email;
+    document.getElementById("editPhone").value = phone;
+    document.getElementById("editInterest").value = interest;
+    document.getElementById("editMessage").value = message;
+    document.getElementById("editCard").style.display = "block";
+    window.scrollTo({top: document.getElementById("editCard").offsetTop - 20, behavior:'smooth'});
+}
+function hideEditForm(){
+    document.getElementById("editCard").style.display = "none";
+    document.getElementById("editForm").reset();
+}
+
+// LOAD DATA
+async function loadVolunteers(){
+    const res = await fetch(`${API}/all`);
+    const data = await res.json();
+    renderTable(data.volunteers);
+}
+
+function renderTable(list){
+    const table = document.getElementById("table");
+    if(list.length === 0){
+        table.innerHTML = `<tr><td colspan="6">No Data Found</td></tr>`; // updated colspan
+        return;
+    }
+    table.innerHTML = list.map(v => `
+        <tr>
+            <td>${v.name}</td>
+            <td>${v.email}</td>
+            <td>${v.phone}</td>
+            <td>${v.interest}</td>
+            <td>${v.message}</td> <!-- ✅ Display message -->
+            <td>
+                <button class="edit-btn" onclick="fillEdit('${v._id}','${v.name}','${v.email}','${v.phone}','${v.interest}','${v.message}')">Edit</button>
+                <button class="delete-btn" onclick="deleteVolunteer('${v._id}')">Delete</button>
+            </td>
+        </tr>
+    `).join("");
+}
+// ADD
+document.getElementById("addForm").addEventListener("submit", async(e)=>{
+    e.preventDefault();
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        interest: document.getElementById("interest").value,
+        message: document.getElementById("message").value
+    };
+    await fetch(`${API}/create`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(data)
+    });
+    alert("Added Successfully");
+    hideAddForm(); // <-- HIDE ADD FORM AFTER SUBMIT
+    loadVolunteers();
+});
+
+// UPDATE
+document.getElementById("editForm").addEventListener("submit", async(e)=>{
+    e.preventDefault();
+    const id = document.getElementById("editId").value;
+    const updatedData = {
+        name: document.getElementById("editName").value,
+        email: document.getElementById("editEmail").value,
+        phone: document.getElementById("editPhone").value,
+        interest: document.getElementById("editInterest").value,
+        message: document.getElementById("editMessage").value
+    };
+    await fetch(`${API}/${id}`,{
+        method:"PUT",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(updatedData)
+    });
+    alert("Updated Successfully");
+    hideEditForm(); // <-- HIDE EDIT FORM AFTER UPDATE
+    loadVolunteers();
+});
+
+// DELETE
+async function deleteVolunteer(id){
+    if(!confirm("Delete this volunteer?")) return;
+    await fetch(`${API}/${id}`,{ method:"DELETE" });
+    alert("Deleted Successfully");
+    loadVolunteers();
+}
+
+// SEARCH
+async function searchVolunteer(){
+    const value = document.getElementById("search").value.toLowerCase();
+    const res = await fetch(`${API}/all`);
+    const data = await res.json();
+    const filtered = data.volunteers.filter(v =>
+        v.name.toLowerCase().includes(value) ||
+        v.email.toLowerCase().includes(value)
+    );
+    renderTable(filtered);
+}
+document.getElementById("search").addEventListener("input", searchVolunteer);
+
+// INIT
+loadVolunteers();
+</script>
+</body>
+</html>
+
