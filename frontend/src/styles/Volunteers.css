@@ -1,98 +1,83 @@
-body{
-    font-family:'Poppins',sans-serif;
-    background:linear-gradient(135deg,#eef2ff,#f8fbff);
-    margin:0;
-    padding:20px;
-}
+/* 🔥 ONLY VOLUNTEER PAGE */
 
-h1{
-    text-align:center;
-}
-
-/* ✅ CONTAINER PERFECT CENTER */
-.container{
-    max-width:1300px;
-    margin:auto;
-}
-
-/* ✅ CARD PERFECT FIT */
-.card{
-    background:#fff;
-    padding:20px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
-    margin-bottom:20px;
-    /* width:113%; */
-    width: 100%;
-    /* overflow-x:auto;   🔥 TABLE KO ANDAR SCROLL KARNE DEGA */
-    overflow: hidden;
-}
-
-/* INPUT */
-input{
-    padding:10px;
+.volunteer-page input{
     margin:5px;
     border-radius:8px;
-    border:1px solid #ccc;
 }
 
-/* BUTTON */
-button{
+.volunteer-page button{
     padding:8px 12px;
     border:none;
     border-radius:8px;
     cursor:pointer;
-    /* margin-right:5px; */
     height:36px;
 }
 
-.add-btn{background:#4CAF50;color:#fff;}
-.edit-btn{background:#2196F3;color:#fff;}
-.delete-btn{background:#f44336;color:#fff;}
+.volunteer-page .add-btn{background:#4CAF50;color:#fff;}
+.volunteer-page .edit-btn{background:#2196F3;color:#fff;}
+.volunteer-page .delete-btn{background:#f44336;color:#fff;}
 
-/* ✅ TABLE FULL FIT */
-table{
+/* .volunteer-page table{
     width:100%;
     border-collapse:collapse;
-    table-layout:fixed;   /* 🔥 important */
+    table-layout:auto;
 }
 
-/* CELL */
-td, th{
-    padding:10px;
+.volunteer-page td,
+.volunteer-page th{
+    padding:14px;
     text-align:center;
-    word-break:break-word;   /* 🔥 text break */
+    word-break:break-word;
 }
 
-/* HEADER */
-th{
+.volunteer-page th{
     background:#f4b041;
     color:#fff;
 }
 
-/* ROW */
-tr:nth-child(even){
+.volunteer-page tr:nth-child(even){
     background:#f2f2f2;
+} */
+
+.volunteer-page table{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:auto;
 }
 
-/* 🔥 TOP BAR */
-.top-bar{
+.volunteer-page td,
+.volunteer-page th{
+    padding:14px;
+    text-align:center;
+    word-break:break-word;
+}
+
+.volunteer-page th{
+    background:#f4b041;
+    color:#fff;
+}
+
+.volunteer-page tr:nth-child(even){
+    background:#f2f2f2;
+} 
+
+.volunteer-page .top-bar{
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-bottom:15px;
 }
 
-/* SEARCH */
-.search-input{
+.volunteer-page .search-input{
     width:160px;
     height:36px;
 }
 
-/* ACTION BUTTON FIX */
-td:last-child{
+/* 🔥 ACTION BUTTON FIX */
+.volunteer-page td:last-child{
     display:flex;
     align-items:center;
     gap:6px;
-    flex-wrap:nowrap;   /* 🔥 kabhi neeche nahi jayega */
+    flex-wrap:nowrap;
+    border-bottom:none !important;
 }

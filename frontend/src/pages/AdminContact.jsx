@@ -27,6 +27,7 @@ const AdminContact = () => {
 
         <div className="card">
           <h2>All Contact Submissions</h2>
+<div class="table-container">
 
           <table>
             <thead>
@@ -80,6 +81,7 @@ const AdminContact = () => {
             </tbody>
 
           </table>
+          </div>
         </div>
 
       </div>

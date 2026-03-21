@@ -72,7 +72,7 @@ const AdminReports = () => {
   return (
     <Layout>
       <div className="report-form-box">
-        <h3>{editId ? "Update Report" : "Add Report"}</h3>
+        <h2>{editId ? "Update Report" : "Add Report"}</h2>
 
         <input
           type="text"
@@ -89,7 +89,7 @@ const AdminReports = () => {
           onChange={handleChange}
         ></textarea>
 
-        <label>PDF</label>
+        {/* <label>PDF</label> */}
         <input type="file" onChange={(e) => setPdf(e.target.files[0])} />
 
         <button onClick={handleSubmit}>

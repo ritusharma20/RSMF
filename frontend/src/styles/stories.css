@@ -1,152 +1,175 @@
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #eef2f7, #dfe9f3);
-    margin: 0;
-    padding: 20px;
+/* ===== CONTAINER ===== */
+.story-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
 }
 
 h2 {
-    text-align: center;
-    color: #2f5d50;
-    margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 12px;
+  color: #2f5d50;
+  font-weight: 700;
 }
 
-.container {
-    max-width: 900px;
-    margin: auto;
-}
-
-/* FORM */
+/* ===== FORM ===== */
 form {
-    background: #fff;
-    padding: 25px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    transition: 0.3s;
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: 0.3s;
 }
 
 form:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 input, textarea {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    font-size: 14px;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
 }
 
 textarea {
-    resize: vertical;
-    min-height: 80px;
+  resize: vertical;
+  min-height: 80px;
 }
 
 button {
-    padding: 12px 20px;
-    background: linear-gradient(45deg, #ff9a3c, #ff6a00);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
+  padding: 12px 20px;
+  background: linear-gradient(45deg, #ff9a3c, #ff6a00);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 button:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
-/* STORY LIST */
+/* ===== STORY LIST ===== */
+.story-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ===== CARD ===== */
 .story {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 25px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    align-items: center;
-    transition: transform 0.4s, box-shadow 0.4s, opacity 0.5s;
-    opacity: 0;
+  display: flex;
+  gap: 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  align-items: center;
+  position: relative;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s forwards;
 }
 
-.story.visible {
-    opacity: 1;
+/* alternate layout */
+.story.reverse {
+  flex-direction: row-reverse;
 }
 
-.story:nth-child(even) {
-    flex-direction: row-reverse;
-}
-
-.story:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-
-.story img {
-    width: 250px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 12px;
-    flex-shrink: 0;
-    transition: transform 0.4s;
+/* IMAGE */
+.story-image img {
+  width: 250px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+  transition: transform 0.4s;
 }
 
 .story:hover img {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
+/* CONTENT */
 .story-content {
-    flex: 1;
-    padding: 0 15px;
+  flex: 1;
+  min-width: 0; /* 🔥 IMPORTANT: prevent overflow */
 }
 
 .story-content h4 {
-    margin: 0 0 10px 0;
-    font-size: 18px;
-    color: #2f5d50;
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #2f5d50;
 }
 
 .story-content p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #555;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555;
+
+  /* 🔥 TEXT BREAK FIX */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 /* DELETE BUTTON */
 .delete-btn {
-    padding: 8px 14px;
-    background: #ff4d4d;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 13px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  padding: 8px 14px;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .delete-btn:hover {
-    background: #e60000;
+  background: #e60000;
 }
 
-/* RESPONSIVE */
+/* HOVER */
+.story:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    .story {
-        flex-direction: column !important;
-        text-align: center;
-    }
+  .story {
+    flex-direction: column !important;
+    text-align: center;
+  }
 
-    .story img {
-        width: 100%;
-        height: 200px;
-    }
+  .story-image img {
+    width: 100%;
+    height: 200px;
+  }
 
-    .story-content {
-        padding: 10px 0;
-    }
+  .delete-btn {
+    position: static;
+    margin-top: 10px;
+  }
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

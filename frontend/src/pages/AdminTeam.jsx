@@ -86,12 +86,12 @@ const AdminTeam = () => {
     <Layout>
       <div className="admin-team-container">
 
-        <h2>Team Panel</h2>
+        
 
         {/* FORM */}
         <div className="form-box">
           <form onSubmit={handleSubmit}>
-
+<h2>Team Panel</h2>
             <input
               type="text"
               name="name"
