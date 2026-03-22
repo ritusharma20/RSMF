@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import Layout from "../layout/Layout";
-import "../styles/gallery.css";
+import styles from "../styles/gallery.module.css"; // ✅ FIXED
 
 const AdminGallery = () => {
   const API = "http://localhost:5000/api/gallery";
@@ -12,7 +12,6 @@ const AdminGallery = () => {
 
   const fileRef = useRef();
 
-  // ================= LOAD =================
   const loadGallery = async () => {
     const res = await fetch(`${API}/gallery`);
     const data = await res.json();
@@ -23,7 +22,6 @@ const AdminGallery = () => {
     loadGallery();
   }, []);
 
-  // ================= FILE PREVIEW =================
   const handleFile = (e) => {
     const f = e.target.files[0];
     setFile(f);
@@ -33,7 +31,6 @@ const AdminGallery = () => {
     }
   };
 
-  // ================= UPLOAD =================
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -54,19 +51,15 @@ const AdminGallery = () => {
     const data = await res.json();
     alert(data.message);
 
-    // RESET
     setTitle("");
     setFile(null);
     setPreview(null);
 
-    if (fileRef.current) {
-      fileRef.current.value = ""; // 🔥 reset file input
-    }
+    if (fileRef.current) fileRef.current.value = "";
 
     loadGallery();
   };
 
-  // ================= DELETE =================
   const deleteImage = async (id) => {
     if (!window.confirm("Delete this image?")) return;
 
@@ -79,12 +72,12 @@ const AdminGallery = () => {
 
   return (
     <Layout>
-      <div className="gallery-container">
+      <div className={styles["gallery-container"]}>
 
         <h2>✨ Admin Media Gallery</h2>
 
-        {/* ================= UPLOAD ================= */}
-        <div className="upload-card">
+        {/* UPLOAD */}
+        <div className={styles["upload-card"]}>
           <form onSubmit={handleSubmit}>
             <input
               type="text"
@@ -105,7 +98,7 @@ const AdminGallery = () => {
               <img
                 src={preview}
                 alt="preview"
-                className="preview-img"
+                className={styles["preview-img"]}
               />
             )}
 
@@ -113,28 +106,25 @@ const AdminGallery = () => {
           </form>
         </div>
 
-        {/* ================= GALLERY ================= */}
-        <div className="gallery">
+        {/* GALLERY */}
+        <div className={styles.gallery}>
           {images.map((img) => (
-            <div className="card" key={img._id}>
+            <div className={styles.card} key={img._id}>
 
-              {/* 🔥 IMAGE BOX (IMPORTANT) */}
-              <div className="image-box">
+              <div className={styles["image-box"]}>
                 <img
                   src={`http://localhost:5000/uploads/${img.filename}`}
                   alt={img.title}
                 />
               </div>
 
-              {/* TITLE OVERLAY */}
-              <div className="title-overlay">
+              <div className={styles["title-overlay"]}>
                 {img.title}
               </div>
 
-              {/* DELETE BUTTON */}
-              <div className="actions">
+              <div className={styles.actions}>
                 <button
-                  className="delete-btn"
+                  className={styles["delete-btn"]}
                   onClick={() => deleteImage(img._id)}
                 >
                   Delete
