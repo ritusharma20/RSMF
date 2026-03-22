@@ -12,9 +12,9 @@ const Sidebar = () => {
     { path: "/admin-stories", label: "Stories" },
     { path: "/admin-volunteers", label: "Volunteers" }, // ✅ Added
       { path: "/admin-gallery", label: "Gallery" },
-
-
+{ path: "/admin/blogs", label: "Blogs" },
         { path: "/admin/contact", label: "Contact" },
+{ path: "/admin-news", label: "News" }
 
   ];
 

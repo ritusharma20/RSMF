@@ -43,6 +43,12 @@ import reportRoutes from "./routes/reportroutes.js";
 app.use("/api/reports", reportRoutes);
 import volunteerRoutes from "./routes/volunteerRoutes.js";
 app.use("/api/volunteers", volunteerRoutes);
+import blogRoutes from "./routes/blogRoutes.js";
+app.use("/api/blogs", blogRoutes);
+
+import newsRoutes from "./routes/newsRoutes.js";
+
+app.use("/api/news", newsRoutes);
 
 // Admin API route to fetch all contact submissions
 app.get("/api/contact/admin", async (req, res) => {

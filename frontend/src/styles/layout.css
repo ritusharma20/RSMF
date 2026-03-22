@@ -43,6 +43,11 @@ body {
   top: 80px;
   left: 0;
   width: 280px;
+
+   height: 100vh;        /* full height */
+  overflow-y: auto;     /* scroll enable */
+  position: fixed;
+  /* top: 0; */
   height: calc(100vh - 80px);
   background: #0a0a0a;
   color: #fff;
@@ -59,6 +64,8 @@ body {
 }
 
 .sidebar ul {
+    max-height: none;
+
   list-style: none;
   padding: 0;
 }
@@ -262,4 +269,15 @@ td:last-child{
   .sidebar { display: none; }
   .main { margin-left: 0; padding: 15px; }
   .topbar { padding: 0 15px; }
+}
+
+
+/* ye scrolling htafdiya */
+.sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 10px;
 }

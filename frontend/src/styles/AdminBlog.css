@@ -1,0 +1,184 @@
+/* ===== PAGE ===== */
+.page {
+  padding: 20px;
+  background: #eef2f7;
+}
+
+/* ===== FORM ===== */
+/* .card {
+  max-width: 500px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.card input,
+.card textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+} */
+
+/* ===== PREVIEW ===== */
+.preview {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* ===== GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+/* ===== CARD ===== */
+.blog-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+}
+
+/* ===== IMAGE ===== */
+.thumb {
+  position: relative;
+}
+
+.thumb img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.thumb span {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: orange;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  padding: 15px;
+  text-align: center;
+}
+
+/* ===== DESCRIPTION ===== */
+.content p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+/* 🔥 CLAMP FOR LONG TEXT */
+.clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== BUTTONS ===== */
+.content button {
+  margin: 5px;
+  background: #2f5d50;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.content button:hover {
+  opacity: 0.85;
+}
+
+.content button:last-child {
+  background: red;
+}
+
+/* ===== MODAL ===== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+/* ===== MODAL BOX ===== */
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+
+  width: 600px;
+  max-width: 90%;
+  max-height: 80vh;
+
+  overflow-y: auto;
+  position: relative;
+  text-align: left;
+
+  animation: popup 0.3s ease;
+}
+
+/* ===== CLOSE BUTTON ===== */
+.close-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* ===== MODAL IMAGE ===== */
+.modal-content img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes popup {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+

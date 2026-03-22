@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import "react-quill/dist/quill.snow.css";
 // PAGES
 import Dashboard from "./pages/Dashboard";
 import Donations from "./pages/Donations";
@@ -9,7 +9,9 @@ import AdminStories from "./pages/AdminStories";
 import Volunteers from "./pages/Volunteers"; // ✅ Import new page
 import AdminContact from "./pages/AdminContact";
 import AdminGallery from "./pages/AdminGallery";
+import AdminBlog from "./pages/AdminBlog";
 
+import AdminNews from "./pages/AdminNews";
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
                 <Route path="/admin-volunteers" element={<Volunteers />} /> {/* ✅ New Route */}
                 <Route path="/admin/contact" element={<AdminContact />} />
 
+<Route path="/admin/blogs" element={<AdminBlog />} />
+<Route path="/admin-news" element={<AdminNews />} />
 
 
       </Routes>
