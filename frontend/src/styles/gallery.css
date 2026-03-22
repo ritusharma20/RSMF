@@ -1,0 +1,102 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+
+  align-items: stretch;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: 0.4s;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+}
+
+/* IMAGE */
+.image-box {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* TITLE */
+.card .title-overlay {
+    
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  text-align: center;
+  padding: 8px;
+  opacity: 0;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+.card:hover .title-overlay {
+  opacity: 1;
+}
+
+/* BUTTON */
+.actions {
+  padding: 10px;
+  text-align: center;
+  margin-top: auto;   /* 🔥 MAIN LINE — ye hi button ko neeche le jayega */
+
+}
+
+.delete-btn {
+    margin-top: 70%;
+  width: 90%;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  background: #ff4d4d;
+  color: white;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #e60000;
+}
+
+/* ================= UPLOAD ================= */
+.upload-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.preview-img {
+  width: 250px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+.upload-card button {
+  width: 250px;
+}

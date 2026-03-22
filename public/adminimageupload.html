@@ -328,6 +328,8 @@ h2 {
 
 /* Floating effect */
 .card::after {
+  pointer-events: none;
+
   content: '';
   position: absolute;
   top: 0;
@@ -412,15 +414,16 @@ form.addEventListener('submit', async (e) => {
 
 // Delete
 async function deleteImage(id) {
+  console.log("CLICK HO RAHA HAI", id);
+
   if(!confirm('Delete this image?')) return;
 
   await fetch(`http://localhost:5000/api/gallery/gallery/${id}`, {
-    method: 'DELETE'
+    method: "DELETE"
   });
 
   loadGallery();
 }
-
 loadGallery();
 </script>
 

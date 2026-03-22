@@ -39,9 +39,13 @@ export const getGallery = async (req, res) => {
 
 
 // ✅ DELETE (DB + file dono delete 🔥)
+import { fileURLToPath } from 'url';
+
 export const deleteImage = async (req, res) => {
   try {
     const { id } = req.params;
+
+    console.log("Delete ID:", id); // debug
 
     const image = await Gallery.findById(id);
 
@@ -49,20 +53,26 @@ export const deleteImage = async (req, res) => {
       return res.status(404).json({ message: "Image not found" });
     }
 
-    // 🔥 file delete from uploads folder
-    const filePath = path.join('uploads', image.filename);
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
+    const filePath = path.join(__dirname, '../uploads', image.filename);
+
+    console.log("File path:", filePath);
 
     if (fs.existsSync(filePath)) {
       fs.unlinkSync(filePath);
+      console.log("File deleted");
+    } else {
+      console.log("File NOT found");
     }
 
-    // DB delete
     await Gallery.findByIdAndDelete(id);
 
-    res.json({ message: "Image deleted successfully" });
+    res.json({ message: "Deleted successfully" });
 
   } catch (err) {
-    console.error(err);
+    console.error("DELETE ERROR:", err);
     res.status(500).json({ message: "Delete failed" });
   }
 };

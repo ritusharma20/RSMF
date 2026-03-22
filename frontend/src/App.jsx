@@ -8,6 +8,7 @@ import AdminReports from "./pages/AdminReports";
 import AdminStories from "./pages/AdminStories";
 import Volunteers from "./pages/Volunteers"; // ✅ Import new page
 import AdminContact from "./pages/AdminContact";
+import AdminGallery from "./pages/AdminGallery";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
 
         {/* Stories */}
         <Route path="/admin-stories" element={<AdminStories />} />
+<Route path="/admin-gallery" element={<AdminGallery />} />
 
                 <Route path="/admin-volunteers" element={<Volunteers />} /> {/* ✅ New Route */}
                 <Route path="/admin/contact" element={<AdminContact />} />

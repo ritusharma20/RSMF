@@ -513,115 +513,8 @@
     </div>
 
     <div class="row g-4">
-      <!-- Main Blog Cards Column -->
-      <div class="col-xl-8 col-12">
-        <div class="row g-4">
-
-          <!-- Blog Card 1 -->
-          <div class="col-md-6 col-12">
-            <div class="blog-card uniform-card" data-aos="fade-up" data-aos-duration="1000">
-              <div class="blog-card-thumb" style="position:relative;">
-                <img src="assets/images/blog/ph-one.png" alt="Blog Image">
-                <div class="blog-date">
-                  <i class="fa-solid fa-calendar-days"></i> April 2, 2024
-                </div>
-              </div>
-              <div class="blog-card-content text-center">
-                <h5>Where Innovation Meets Foundation</h5>
-                <p>Discover how the Rita Shiva Memorial Foundation is transforming lives through education, healthcare, and community initiatives.</p>
-                <a href="underprocess.html" class="btn-featured mt-3">Read More <i class="fa-solid fa-book-open"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Blog Card 2 -->
-          <div class="col-md-6 col-12">
-            <div class="blog-card uniform-card" data-aos="fade-up" data-aos-duration="1000">
-              <div class="blog-card-thumb" style="position:relative;">
-                <img src="assets/images/blog/ph-two.png" alt="Blog Image">
-                <div class="blog-date">
-                  <i class="fa-solid fa-calendar-days"></i> April 10, 2024
-                </div>
-              </div>
-              <div class="blog-card-content text-center">
-                <h5>Stories That Inspire Change</h5>
-                <p>Heartwarming accounts of children and families empowered by education and health programs across Bihar.</p>
-                <a href="underprocess.html" class="btn-featured mt-3">Read More <i class="fa-solid fa-book-open"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Blog Card 3 -->
-          <div class="col-md-6 col-12">
-            <div class="blog-card uniform-card" data-aos="fade-up" data-aos-duration="1000">
-              <div class="blog-card-thumb" style="position:relative;">
-                <img src="assets/images/blog/three.png" alt="Blog Image">
-                <div class="blog-date">
-                  <i class="fa-solid fa-calendar-days"></i> April 15, 2024
-                </div>
-              </div>
-              <div class="blog-card-content text-center">
-                <h5>Empowering Communities Through Action</h5>
-                <p>Learn how small donations make a big impact in education and healthcare for children in need.</p>
-                <a href="underprocess.html" class="btn-featured mt-3">Read More <i class="fa-solid fa-book-open"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Blog Card 4 -->
-          <div class="col-md-6 col-12">
-            <div class="blog-card uniform-card" data-aos="fade-up" data-aos-duration="1000">
-              <div class="blog-card-thumb" style="position:relative;">
-                <img src="assets/images/blog/four.png" alt="Blog Image">
-                <div class="blog-date">
-                  <i class="fa-solid fa-calendar-days"></i> April 20, 2024
-                </div>
-              </div>
-              <div class="blog-card-content text-center">
-                <h5>Building a Better Tomorrow</h5>
-                <p>Insights on community initiatives that are creating opportunities for children and women.</p>
-                <a href="underprocess.html" class="btn-featured mt-3">Read More <i class="fa-solid fa-book-open"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Blog Card 5 -->
-          <div class="col-md-6 col-12">
-            <div class="blog-card uniform-card" data-aos="fade-up" data-aos-duration="1000">
-              <div class="blog-card-thumb" style="position:relative;">
-                <img src="assets/images/blog/five.png" alt="Blog Image">
-                <div class="blog-date">
-                  <i class="fa-solid fa-calendar-days"></i> April 25, 2024
-                </div>
-              </div>
-              <div class="blog-card-content text-center">
-                <h5>Education is Empowerment</h5>
-                <p>Highlighting the success stories of children uplifted through scholarships and mentorship.</p>
-                <a href="underprocess.html" class="btn-featured mt-3">Read More <i class="fa-solid fa-book-open"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Blog Card 6 -->
-          <div class="col-md-6 col-12">
-            <div class="blog-card uniform-card" data-aos="fade-up" data-aos-duration="1000">
-              <div class="blog-card-thumb" style="position:relative;">
-                <img src="assets/images/blog/six.png" alt="Blog Image">
-                <div class="blog-date">
-                  <i class="fa-solid fa-calendar-days"></i> April 30, 2024
-                </div>
-              </div>
-              <div class="blog-card-content text-center">
-                <h5>Healthcare for All</h5>
-                <p>Documenting health initiatives that ensure access to medical services in remote communities.</p>
-                <a href="underprocess.html" class="btn-featured mt-3">Read More <i class="fa-solid fa-book-open"></i></a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
+      <div class="row g-4" id="blog-container">
+</div>
       <!-- Sidebar Column -->
       <div class="col-xl-4 col-12">
         <div class="blog-sidebar">
@@ -883,6 +776,43 @@
    </div>
    <!-- ==== js dependencies start ==== -->
    <!-- jquery -->
+    <script>
+fetch("http://localhost:5000/api/blog")
+  .then(res => res.json())
+  .then(data => {
+
+    const container = document.getElementById("blog-container");
+
+    data.forEach(blog => {
+
+      const card = `
+      <div class="col-md-6 col-12">
+        <div class="blog-card">
+
+          <div class="blog-card-thumb">
+            <img src="http://localhost:5000/${blog.image}" />
+
+            <div class="blog-date">
+              ${blog.date}
+            </div>
+          </div>
+
+          <div class="blog-card-content">
+            <h5>${blog.title}</h5>
+            <p>${blog.description}</p>
+          </div>
+
+        </div>
+      </div>
+      `;
+
+      container.innerHTML += card;
+
+    });
+
+  });
+</script>
+
    <script src="assets/js/jquery-3.7.1.min.js"></script>
    <!-- bootstrap five js -->
    <script src="assets/js/bootstrap.bundle.min.js"></script>
