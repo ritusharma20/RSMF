@@ -3,14 +3,19 @@ import Volunteer from "../models/volunteer.js";
 // ✅ Save Volunteer Form
 export const createVolunteer = async (req, res) => {
     try {
-        const { name, email, phone, interest, message } = req.body;
+        const { name, email, phone, interest, message, status } = req.body;
+
+        // 🔥 ADD THIS LINE
+        const cvFile = req.file ? req.file.filename : "";
 
         const newVolunteer = new Volunteer({
             name,
             email,
             phone,
             interest,
-            message
+            message,
+            status: status || "pending",
+            cv: cvFile // 🔥 SAVE CV
         });
 
         await newVolunteer.save();
@@ -29,7 +34,6 @@ export const createVolunteer = async (req, res) => {
         });
     }
 };
-
 // ✅ Get All Volunteers (Admin Panel)
 export const getAllVolunteers = async (req, res) => {
     try {
@@ -147,4 +151,30 @@ export const searchVolunteers = async (req, res) => {
             error: error.message
         });
     }
+};
+
+// GET PENDING
+export const getPending = async (req, res) => {
+  const data = await Volunteer.find({ status: "pending" });
+  res.json({ success: true, volunteers: data });
+};
+
+// GET APPROVED
+export const getApproved = async (req, res) => {
+  const data = await Volunteer.find({ status: "approved" });
+  res.json({ success: true, volunteers: data });
+};
+
+// ACCEPT
+export const acceptVolunteer = async (req, res) => {
+  await Volunteer.findByIdAndUpdate(req.params.id, {
+    status: "approved"
+  });
+  res.json({ success: true });
+};
+
+// REJECT
+export const rejectVolunteer = async (req, res) => {
+  await Volunteer.findByIdAndDelete(req.params.id);
+  res.json({ success: true });
 };

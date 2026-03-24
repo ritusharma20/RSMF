@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
-import "../styles/Volunteers.css";
+import { useEffect, useState } from "react";
 import Layout from "../layout/Layout";
+import "../styles/Volunteers.css";
 
 const API = "http://localhost:5000/api/volunteers";
 
-export default function AdminVolunteer() {
+const AdminVolunteer = () => {
   const [volunteers, setVolunteers] = useState([]);
   const [search, setSearch] = useState("");
+
+  const [filter, setFilter] = useState("all");
 
   const [showAdd, setShowAdd] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -21,94 +23,148 @@ export default function AdminVolunteer() {
 
   const [editId, setEditId] = useState("");
 
+  // 🔄 LOAD
   const loadVolunteers = async () => {
     const res = await fetch(`${API}/all`);
     const data = await res.json();
-    setVolunteers(data.volunteers);
+    setVolunteers(data.volunteers || []);
   };
 
   useEffect(() => {
     loadVolunteers();
   }, []);
 
+  // ➕ ADD
   const handleAdd = async (e) => {
     e.preventDefault();
 
     await fetch(`${API}/create`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...form, status: "approved" }),
     });
 
-    alert("Added Successfully");
+    alert("Added Successfully ✅");
     setShowAdd(false);
     setForm({ name: "", email: "", phone: "", interest: "", message: "" });
     loadVolunteers();
   };
 
+  // ❌ DELETE
   const deleteVolunteer = async (id) => {
     if (!window.confirm("Delete this volunteer?")) return;
 
     await fetch(`${API}/${id}`, { method: "DELETE" });
-    alert("Deleted Successfully");
+    alert("Deleted ❌");
     loadVolunteers();
   };
 
+  // ✏️ EDIT
   const fillEdit = (v) => {
     setEditId(v._id);
     setForm(v);
     setShowEdit(true);
   };
 
+  // 🔄 UPDATE
   const handleUpdate = async (e) => {
     e.preventDefault();
 
     await fetch(`${API}/${editId}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(form),
     });
 
-    alert("Updated Successfully");
+    alert("Updated 🔄");
     setShowEdit(false);
     loadVolunteers();
   };
 
-  const filtered = volunteers.filter(
-    (v) =>
+  // ✅ ACCEPT
+  const acceptVolunteer = async (id) => {
+    await fetch(`${API}/accept/${id}`, { method: "PUT" });
+    alert("Approved ✅");
+    loadVolunteers();
+  };
+
+  // ❌ REJECT
+  const rejectVolunteer = async (id) => {
+    if (!window.confirm("Reject this volunteer?")) return;
+
+    await fetch(`${API}/reject/${id}`, { method: "DELETE" });
+    alert("Rejected ❌");
+    loadVolunteers();
+  };
+
+  // 🔍 FILTER
+  const filtered = volunteers.filter((v) => {
+    const matchSearch =
       v.name.toLowerCase().includes(search.toLowerCase()) ||
-      v.email.toLowerCase().includes(search.toLowerCase())
-  );
+      v.email.toLowerCase().includes(search.toLowerCase());
+
+    if (filter === "pending") return v.status === "pending" && matchSearch;
+    if (filter === "approved") return v.status === "approved" && matchSearch;
+
+    return matchSearch;
+  });
 
   return (
     <Layout>
-      <div className="container volunteer-page"> {/* 🔥 scope added */}
+      <div className="container volunteer-page">
 
+        {/* TOP BAR */}
+        <div className="top-bar">
+          <div>
+            <input
+              className="search-input"
+              placeholder="Search..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+
+          <div className="filter-btns">
+  <button className="edit-btn" onClick={() => setFilter("all")}>All</button>
+  <button onClick={() => setFilter("pending")}>Pending</button>
+  <button className="add-btn" onClick={() => setFilter("approved")}>Approved</button>
+</div>
+
+          <button onClick={() => setShowAdd(true)} className="add-btn">
+            Add Volunteer
+          </button>
+        </div>
+
+        {/* ADD FORM */}
         {showAdd && (
           <div className="card">
             <h3>Add Volunteer</h3>
             <form onSubmit={handleAdd}>
-              <input placeholder="Name" required value={form.name}
+              <input placeholder="Name" required
                 onChange={(e) => setForm({ ...form, name: e.target.value })} />
 
-              <input type="email" placeholder="Email" required value={form.email}
+              <input placeholder="Email" required
                 onChange={(e) => setForm({ ...form, email: e.target.value })} />
 
-              <input placeholder="Phone" value={form.phone}
+              <input placeholder="Phone"
                 onChange={(e) => setForm({ ...form, phone: e.target.value })} />
 
-              <input placeholder="Interest" value={form.interest}
+              <input placeholder="Interest"
                 onChange={(e) => setForm({ ...form, interest: e.target.value })} />
 
-              <input placeholder="Message" value={form.message}
+              <input placeholder="Message"
                 onChange={(e) => setForm({ ...form, message: e.target.value })} />
 
-              <button className="add-btn">Add</button>
-              <button type="button" onClick={() => setShowAdd(false)}>Cancel</button>
+              <button className="add-btn">Save</button>
             </form>
           </div>
         )}
 
+        {/* EDIT FORM */}
         {showEdit && (
           <div className="card">
             <h3>Edit Volunteer</h3>
@@ -129,38 +185,24 @@ export default function AdminVolunteer() {
                 onChange={(e) => setForm({ ...form, message: e.target.value })} />
 
               <button className="edit-btn">Update</button>
-              <button type="button" onClick={() => setShowEdit(false)}>Cancel</button>
             </form>
           </div>
         )}
 
+        {/* TABLE */}
         <div className="card">
-          <h2>All Volunteers</h2>
+          <h2>Volunteers</h2>
 
-          <div className="top-bar">
-            <div>
-              <input
-                className="search-input"
-                placeholder="Search..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              <button>Search</button>
-            </div>
-
-            <button onClick={() => setShowAdd(true)} className="add-btn">
-              Add New Volunteer
-            </button>
-          </div>
-<div className ="table-container">
           <table>
             <thead>
               <tr>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>Interest</th>
-                <th>Message</th>
+                  <th>Interest</th> {/* 🔥 ADD */}
+
+                <th>Status</th>
+                <th>CV</th> {/* 🔥 NEW */}
                 <th>Action</th>
               </tr>
             </thead>
@@ -168,7 +210,7 @@ export default function AdminVolunteer() {
             <tbody>
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan="6">No Data Found</td>
+                  <td colSpan="6">No Data</td>
                 </tr>
               ) : (
                 filtered.map((v) => (
@@ -176,25 +218,75 @@ export default function AdminVolunteer() {
                     <td>{v.name}</td>
                     <td>{v.email}</td>
                     <td>{v.phone}</td>
-                    <td>{v.interest}</td>
-                    <td>{v.message}</td>
+<td>{v.interest || "N/A"}</td>
                     <td>
-                      <button className="edit-btn" onClick={() => fillEdit(v)}>
-                        Edit
-                      </button>
-                      <button className="delete-btn" onClick={() => deleteVolunteer(v._id)}>
-                        Delete
-                      </button>
+                      {v.status === "pending" ? "⏳ Pending" : "✅ Approved"}
+                    </td>
+
+                    {/* 🔥 CV COLUMN */}
+                    {/* <td>
+  {v.cv ? (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <a
+        href={`http://localhost:5000/uploads/cv/${v.cv}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <button className="edit-btn">View</button>
+      </a>
+    </div>
+  ) : (
+    "No CV"
+  )}
+</td> */}
+
+<td>
+  {v.cv ? (
+    <a
+      href={`http://localhost:5000/uploads/cv/${v.cv}`}
+      target="_blank"
+      rel="noreferrer"
+      style={{ color: "#007bff", textDecoration: "none", fontWeight: "500" }}
+    >
+      View 
+    </a>
+  ) : (
+    "No CV"
+  )}
+</td>
+                    <td>
+                      {v.status === "pending" && (
+                        <>
+                          <button className="add-btn" onClick={() => acceptVolunteer(v._id)}>
+                            Accept
+                          </button>
+                          <button onClick={() => rejectVolunteer(v._id)}>
+                            Reject
+                          </button>
+                        </>
+                      )}
+
+                      {v.status === "approved" && (
+                        <>
+                          <button className="edit-btn" onClick={() => fillEdit(v)}>
+                            Edit
+                          </button>
+                          <button className="delete-btn" onClick={() => deleteVolunteer(v._id)}>
+                            Delete
+                          </button>
+                        </>
+                      )}
                     </td>
                   </tr>
                 ))
               )}
             </tbody>
           </table>
-          </div>
         </div>
 
       </div>
     </Layout>
   );
-}
+};
+
+export default AdminVolunteer;

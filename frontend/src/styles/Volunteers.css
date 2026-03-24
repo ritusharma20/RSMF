@@ -16,6 +16,7 @@
 .volunteer-page .add-btn{background:#4CAF50;color:#fff;}
 .volunteer-page .edit-btn{background:#2196F3;color:#fff;}
 .volunteer-page .delete-btn{background:#f44336;color:#fff;}
+.volunteer-page .pending-btn{background:#f4e136;color:#fff;}
 
 /* .volunteer-page table{
     width:100%;
@@ -80,4 +81,20 @@
     gap:6px;
     flex-wrap:nowrap;
     border-bottom:none !important;
+}
+.volunteer-page a {
+  white-space: nowrap;
+  width: auto;        /* 🔥 important */
+  /* padding: 6px 12px;  thoda space */
+}
+td:nth-child(5) /*Status */
+/* td:nth-child(6) /*{ CV */
+
+{
+  white-space: nowrap;
+}
+
+.filter-btns {
+  display: flex;
+  gap: 5px;   /* 🔥 sirf in buttons ke beech gap */
 }

@@ -570,10 +570,12 @@
                         <div class="mb-3">
                             <input type="text" id="phone"  class="form-control" placeholder="Phone Number" required>
                         </div>
-
+<div class="mb-3">
+    <input type="file" id="cv" class="form-control" placeholder=" upload your cv  "  accept=".pdf,.doc,.docx" required>
+</div>
                         <div class="mb-3">
                             <select id="interest" class="form-control">
-                                <option>Select Area of Interest</option>
+                                <!-- <option>Select Area of Interest</option> -->
                                 <option>Education Support</option>
                                 <option>Healthcare Campaign</option>
                                 <option>Women Empowerment</option>
@@ -589,7 +591,7 @@
                             Submit Application
                         </button>
                     </form>
-
+<p id="msg" style="color: green; text-align:center; margin-top:10px;"></p>
                 </div>
             </div>
 
@@ -759,148 +761,61 @@
         <!-- ==== / scroll to top end ==== -->
 
     </div>
-    <script>
-        const API = "http://localhost:5000/api/volunteers";
+   <script>
+const API = "http://localhost:5000/api/volunteers";
 
-// 🔹 Render Table
-function renderTable(list){
-    const table = document.getElementById("table");
-    if(list.length === 0){
-        table.innerHTML = `<tr><td colspan="5">No Data Found</td></tr>`;
+document.getElementById("volunteerForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // 🔥 Get values
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const interest = document.getElementById("interest").value.trim();
+    const message = document.getElementById("message").value.trim();
+    const cv = document.getElementById("cv").files[0]; // ✅ NEW
+
+    // ✅ Basic validation
+    if (!name || !email || !phone || !interest || !cv) {
+        document.getElementById("msg").innerText = "Please fill all fields + upload CV ❗";
         return;
     }
 
-    table.innerHTML = list.map(v => `
-        <tr>
-            <td>${v.name}</td>
-            <td>${v.email}</td>
-            <td>${v.phone}</td>
-            <td>${v.interest}</td>
-            <td>${v.message}</td>
-            <td>
-                <button class="edit-btn" onclick="fillEdit('${v._id}','${v.name}','${v.email}','${v.phone}','${v.interest}','${v.message}')">Edit</button>
-                <button class="delete-btn" onclick="deleteVolunteer('${v._id}')">Delete</button>
-            </td>
-        </tr>
-    `).join("");
-}
+    // ✅ FormData (same JS flow, bas yaha change)
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("interest", interest);
+    formData.append("message", message);
+    formData.append("status", "pending");
+    formData.append("cv", cv); // 🔥 important
 
-// 🔹 Load All Volunteers
-async function loadVolunteers(){
     try {
-        const res = await fetch(`${API}/all`);
+        const res = await fetch(`${API}/create`, {
+            method: "POST",
+            body: formData   // 🔥 JSON hata diya
+        });
+
         const data = await res.json();
-        if(data.success){
-            renderTable(data.volunteers);
-        }
-    } catch (error) {
-        console.error(error);
-        alert("Error loading volunteers");
-    }
-}
 
-// 🔹 Add Volunteer
-document.getElementById("volunteerForm").addEventListener("submit", async (e)=>{
-    e.preventDefault();
-    const newVol = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        interest: document.getElementById("interest").value,
-        message: document.getElementById("message").value
-    };
-    try {
-        await fetch(`${API}/create`,{
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body: JSON.stringify(newVol)
-        });
-        alert("Added Successfully");
-        e.target.reset();
-        // loadVolunteers();
-    } catch(err){
-        console.error(err);
-        alert("Error adding volunteer");
-    }
-});
+        if (data.success) {
+            document.getElementById("msg").innerText =
+                "Request Sent! CV uploaded ✅";
 
-// 🔹 Fill Edit Form
-function fillEdit(id,name,email,phone,interest,message){
-    document.getElementById("editId").value = id;
-    document.getElementById("editName").value = name;
-    document.getElementById("editEmail").value = email;
-    document.getElementById("editPhone").value = phone;
-    document.getElementById("editInterest").value = interest;
-    document.getElementById("editMessage").value = message;
-}
-
-// 🔹 Update Volunteer
-document.getElementById("editForm").addEventListener("submit", async (e)=>{
-    e.preventDefault();
-    const id = document.getElementById("editId").value;
-    const updated = {
-        name: document.getElementById("editName").value,
-        email: document.getElementById("editEmail").value,
-        phone: document.getElementById("editPhone").value,
-        interest: document.getElementById("editInterest").value,
-        message: document.getElementById("editMessage").value
-    };
-    try {
-        await fetch(`${API}/${id}`,{
-            method:"PUT",
-            headers:{"Content-Type":"application/json"},
-            body: JSON.stringify(updated)
-        });
-        alert("Updated Successfully");
-        loadVolunteers();
-    } catch(err){
-        console.error(err);
-        alert("Error updating volunteer");
-    }
-});
-
-// 🔹 Delete Volunteer
-async function deleteVolunteer(id){
-    if(!confirm("Delete this volunteer?")) return;
-    try {
-        await fetch(`${API}/${id}`,{
-            method:"DELETE"
-        });
-        alert("Deleted Successfully");
-        loadVolunteers();
-    } catch(err){
-        console.error(err);
-        alert("Error deleting volunteer");
-    }
-}
-
-// 🔹 Search Volunteer
-async function searchVolunteer(){
-    const query = document.getElementById("search").value.trim();
-    if(query === ""){
-        loadVolunteers();
-        return;
-    }
-    try {
-        const res = await fetch(`${API}/search?query=${encodeURIComponent(query)}`);
-        const data = await res.json();
-        if(data.success){
-            renderTable(data.volunteers);
+            e.target.reset();
         } else {
-            renderTable([]);
+            document.getElementById("msg").innerText =
+                data.message || "Something went wrong ❌";
         }
-    } catch(err){
+
+    } catch (err) {
         console.error(err);
-        alert("Error searching volunteers");
+        document.getElementById("msg").innerText =
+            "Server error ❌";
     }
-}
-
-// 🔹 Live Search
-document.getElementById("search").addEventListener("input", searchVolunteer);
-
-// 🔹 Initial Load
-loadVolunteers();
-    </script>
+});
+</script>
     <!-- ==== js dependencies start ==== -->
     <!-- jquery -->
     <script src="assets/js/jquery-3.7.1.min.js"></script>

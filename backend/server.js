@@ -50,6 +50,11 @@ import newsRoutes from "./routes/newsRoutes.js";
 
 app.use("/api/news", newsRoutes);
 
+import dashboardRoutes from "./routes/dashboard.js";
+
+app.use("/api/dashboard", dashboardRoutes);
+
+
 // Admin API route to fetch all contact submissions
 app.get("/api/contact/admin", async (req, res) => {
   try {

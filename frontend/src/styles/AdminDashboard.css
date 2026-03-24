@@ -1,0 +1,64 @@
+/* ===== MAIN WRAPPER ===== */
+.admin-dashboard {
+  padding: 20px;
+}
+
+/* ===== TITLE ===== */
+.admin-dashboard__title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* ===== CARDS GRID ===== */
+.admin-dashboard__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* ===== CARD ===== */
+.admin-dashboard__card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.admin-dashboard__card:hover {
+  transform: translateY(-6px);
+}
+
+/* ===== ICON ===== */
+.admin-dashboard__icon {
+  font-size: 28px;
+  padding: 15px;
+  border-radius: 50%;
+  color: #fff;
+}
+
+/* ICON COLORS */
+.admin-dashboard__icon.users {
+  background: #3498db;
+}
+
+.admin-dashboard__icon.reports {
+  background: #f39c12;
+}
+
+.admin-dashboard__icon.approved {
+  background: #2ecc71;
+}
+
+/* ===== WELCOME BOX ===== */
+.admin-dashboard__welcome {
+  margin-top: 30px;
+  padding: 25px;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+}

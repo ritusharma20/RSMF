@@ -18,7 +18,16 @@ const volunteerSchema = new mongoose.Schema({
     },
     message: {
         type: String
-    }
+    },
+    cv: {
+  type: String
+},
+status: {
+  type: String,
+  enum: ["pending", "approved"],
+  default: "pending"
+}
+
 }, { timestamps: true });
 
 export default mongoose.model("Volunteer", volunteerSchema);

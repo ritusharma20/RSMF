@@ -14,7 +14,7 @@ const Sidebar = () => {
       { path: "/admin-gallery", label: "Gallery" },
 { path: "/admin/blogs", label: "Blogs" },
         { path: "/admin/contact", label: "Contact" },
-{ path: "/admin-news", label: "News" }
+{ path: "/admin-news", label: "News" },
 
   ];
 

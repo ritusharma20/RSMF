@@ -33,6 +33,13 @@ const AdminReports = () => {
   };
 
   const handleSubmit = async () => {
+
+    // ✅ VALIDATION
+    if (!form.title || !form.description) {
+      alert("Fill all fields");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("title", form.title);
     formData.append("description", form.description);
@@ -65,8 +72,9 @@ const AdminReports = () => {
     loadData();
   };
 
+  // ✅ FIXED PATH
   const viewPDF = (file) => {
-    window.open(`http://localhost:5000/uploads/pdfs/${file}`, "_blank");
+    window.open(`http://localhost:5000/uploads/reports/${file}`, "_blank");
   };
 
   return (
@@ -89,8 +97,12 @@ const AdminReports = () => {
           onChange={handleChange}
         ></textarea>
 
-        {/* <label>PDF</label> */}
-        <input type="file" onChange={(e) => setPdf(e.target.files[0])} />
+        {/* ✅ ONLY PDF */}
+        <input 
+          type="file" 
+          accept="application/pdf"
+          onChange={(e) => setPdf(e.target.files[0])} 
+        />
 
         <button onClick={handleSubmit}>
           {editId ? "Update" : "Submit"}

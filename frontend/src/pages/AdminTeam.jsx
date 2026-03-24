@@ -135,10 +135,10 @@ const AdminTeam = () => {
           {team.map((t) => (
             <div className="team-card" key={t._id}>
 
-              <img
-                src={t.image ? `http://localhost:5000/${t.image}` : "https://via.placeholder.com/300"}
-                alt=""
-              />
+<img
+  src={t.image ? t.image : "https://via.placeholder.com/300"}
+  alt=""
+/>
 
               <div className="team-content">
                 <h3>{t.name}</h3>

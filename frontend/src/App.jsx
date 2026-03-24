@@ -13,6 +13,9 @@ import AdminBlog from "./pages/AdminBlog";
 
 import AdminNews from "./pages/AdminNews";
 
+
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -40,8 +43,7 @@ function App() {
 <Route path="/admin/blogs" element={<AdminBlog />} />
 <Route path="/admin-news" element={<AdminNews />} />
 
-
-      </Routes>
+       </Routes>
     </BrowserRouter>
   );
 }
